@@ -2,22 +2,19 @@ import React from 'react';
 import {Box, Container, TextField, Typography} from '@mui/material';
 import Button from '@mui/material/Button';
 import {useHistory} from 'react-router-dom';
-import * as yup from 'yup'
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
+import {useDispatch} from "react-redux";
+import {login} from "../../../redux/reducers/users/actions/creators";
+import LoginValidation from "../../../validationSchemes/LoginValidation";
 
 const Login = () => {
     const history = useHistory()
-
-    const validationScheme = yup.object().shape({
-        username: yup.string().required('Username is required'),
-        password:yup.string().required('Password is required')
-    })
+    const dispatch = useDispatch()
 
     const {handleSubmit, register, formState: {errors}} = useForm({
-        resolver: yupResolver(validationScheme)
+        resolver: yupResolver(LoginValidation())
     })
-
 
     const formStyles = {
         border: '1px solid grey',
@@ -26,7 +23,8 @@ const Login = () => {
     }
 
     const onSubmit = (data) => {
-        console.log(data)
+        dispatch(login())
+        history.push('/movies')
     }
 
     return (

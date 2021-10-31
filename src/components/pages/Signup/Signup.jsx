@@ -1,22 +1,19 @@
 import React from 'react';
 import {Box, Container, TextField, Typography} from '@mui/material';
 import Button from '@mui/material/Button';
-import {useHistory} from 'react-router-dom';
-import * as yup from 'yup';
-import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
+import {useHistory} from 'react-router-dom';
+import {useForm} from 'react-hook-form';
+import {useDispatch} from "react-redux";
+import {singup} from "../../../redux/reducers/users/actions/creators";
+import SignupValidation from "../../../validationSchemes/SignupValidation";
 
 const Login = () => {
     const history = useHistory()
-
-    const validationScheme = yup.object().shape({
-        username: yup.string().required('Username is required'),
-        password: yup.string().required('Password is required'),
-        confirmedPassword: yup.string().required('Password confirmation is required')
-    })
+    const dispatch = useDispatch()
 
     const {register, formState: {errors}, handleSubmit} = useForm({
-        resolver: yupResolver(validationScheme)
+        resolver: yupResolver(SignupValidation())
     })
 
     const formStyles = {
@@ -27,7 +24,8 @@ const Login = () => {
     }
 
     const onSubmit = (data) => {
-        console.log(data)
+        dispatch(singup(data))
+        history.push('/')
     }
 
     return (
@@ -61,7 +59,7 @@ const Login = () => {
                         {...register('confirmedPassword')}
                         error={!!errors.confirmedPassword}
                         helperText={errors?.confirmedPassword?.message}
-                        type='confirmedPassword'
+                        type='password'
                         label='Confirm password'
                         margin='normal'
                         fullWidth
