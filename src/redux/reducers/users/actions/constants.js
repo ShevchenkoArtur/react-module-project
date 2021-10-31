@@ -1,6 +1,6 @@
 const usersActions = {
     SIGNUP: 'SIGNUP',
-    LOGIN: 'LOGIN'
+    LOGIN: 'LOGIN',
 }
 
 export default usersActions;

@@ -1,7 +1,7 @@
 import usersActions from "./actions/constants";
 
 const initialState = {
-    isLogin: false,
+    isLogin: true,
     userData: {
         username: '',
         password: '',
