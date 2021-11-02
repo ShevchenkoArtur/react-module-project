@@ -7,24 +7,25 @@ import Movie from "./Movie/Movie";
 const Movies = () => {
     const {movies} = useSelector(state => state.movies)
     const dispatch = useDispatch()
-    console.log(movies)
 
     useEffect(() => {
         dispatch(getMoviesAsync())
-    }, [])
+    }, [dispatch])
 
     const renderMovies = () => {
-        return movies.map(el => <Movie key={el.id} movie={el}/>)
+        return (
+            movies.map(el => <Movie key={el.id} movie={el}/>)
+        )
     }
 
     return (
-        <div>
+        <>
             Movies
-            <div style={{display:'flex', flexWrap:'wrap'}}>
+            <div>
                 {renderMovies()}
             </div>
             <PaginationSize/>
-        </div>
+        </>
     )
 }
 

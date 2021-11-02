@@ -13,7 +13,8 @@ const Login = () => {
     const dispatch = useDispatch()
 
     const {handleSubmit, register, formState: {errors}} = useForm({
-        resolver: yupResolver(LoginValidation())
+        resolver: yupResolver(LoginValidation()),
+        mode: 'onSubmit'
     })
 
     const formStyles = {

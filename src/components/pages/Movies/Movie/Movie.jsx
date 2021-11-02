@@ -3,16 +3,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import {Button, CardActionArea, CardActions} from '@mui/material';
+import {CardActionArea} from '@mui/material';
+import {baseImgUrl} from '../../../../api/api';
 
 const Movie = ({movie}) => {
-
-    // const cardStyles = {
-    //     marginRight: '8px',
-    //     marginLeft: '8px',
-    //     marginTop: '16px',
-    //     flexBasis: '33.3%'
-    // }
 
     return (
         <Card>
@@ -20,7 +14,7 @@ const Movie = ({movie}) => {
                 <CardMedia
                     component="img"
                     height="200"
-                    image={`${process.env.REACT_APP_BASE_IMAGE_URL}${movie.poster_path}`}
+                    image={`${baseImgUrl}${movie.poster_path}`}
                     alt="poster image"
                 />
                 <CardContent>
@@ -32,11 +26,6 @@ const Movie = ({movie}) => {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                {/*<Button size="small" color="primary">*/}
-                {/*    Share*/}
-                {/*</Button>*/}
-            </CardActions>
         </Card>
     )
 }

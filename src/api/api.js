@@ -1,8 +1,12 @@
 import axios from "axios";
 
-const api = axios.create({
-    baseURL: process.env?.REACT_APP_BASE_URL
-})
+const baseMovieUrl = 'https://api.themoviedb.org/3'
+export const baseImgUrl = 'https://image.tmdb.org/t/p/w500'
 
-export default api;
+export const apiInstance = axios.create({
+    baseURL: baseMovieUrl,
+    params: {
+        api_key: process.env?.REACT_APP_API_SECRET
+    }
+})
 

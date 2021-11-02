@@ -2,11 +2,19 @@ import usersActions from "./actions/constants";
 
 const initialState = {
     isLogin: true,
-    userData: {
+
+    registerInputValues: {
+        firstName: '',
+        lastName: '',
         username: '',
+        birthday: new Date(),
+        gender: '',
+        email: '',
         password: '',
         confirmedPassword: ''
-    }
+    },
+
+    registeredUserData: {}
 }
 
 const usersReducer = (state=initialState, action) => {
@@ -14,12 +22,22 @@ const usersReducer = (state=initialState, action) => {
         case usersActions.SIGNUP:
             return {
                 ...state,
-                userData: action.payload.userData
+                registeredUserData: {
+                    ...state.registerInputValues,
+                }
             }
         case usersActions.LOGIN:
             return {
                 ...state,
                 isLogin: true
+            }
+        case usersActions.UPDATE_REGISTER_USER_DATA:
+            return {
+                ...state,
+                registerInputValues: {
+                    ...state.registerInputValues,
+                    [action.payload.key]: action.payload.value
+                }
             }
         default:
             return state
