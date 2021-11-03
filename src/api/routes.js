@@ -1,10 +1,14 @@
 import {apiInstance} from './api';
 
-export async function fetchMovies() {
+export async function fetchMovies(page) {
     return await apiInstance.get(`/movie/popular`, {
         params: {
             language: 'en-US',
-            page: 1
+            page: page
         }
     })
+}
+
+export async function fetchMovie(id) {
+    return await apiInstance.get(`/movie/${id}`)
 }

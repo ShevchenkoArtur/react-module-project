@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Container, TextField, Typography} from '@mui/material';
+import {Box, Container, Paper, TextField, Typography} from '@mui/material';
 import Button from '@mui/material/Button';
 import {useHistory} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
@@ -18,7 +18,6 @@ const Login = () => {
     })
 
     const formStyles = {
-        border: '1px solid grey',
         borderRadius: '5px',
         padding: '30px'
     }
@@ -30,37 +29,39 @@ const Login = () => {
 
     return (
         <Container style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh'}}>
-            <form noValidate style={formStyles} onSubmit={handleSubmit(onSubmit)}>
-                <Typography align='center' fontWeight='bold'>Login</Typography>
-                <Box>
-                    <TextField
-                        {...register('username')}
-                        error={!!errors.username}
-                        helperText={errors?.username?.message}
-                        type='text'
-                        label='Username'
-                        margin='normal'
-                        fullWidth
-                    />
-                </Box>
-                <Box>
-                    <TextField
-                        {...register('password')}
-                        error={!!errors.password}
-                        helperText={errors?.password?.message}
-                        type='password'
-                        label='Password'
-                        margin='normal'
-                        fullWidth
-                    />
-                </Box>
-                <Box mt={2}>
-                    <Button fullWidth variant='contained' type='submit'>Submit</Button>
-                </Box>
-                <Box mt={2}>
-                    <Button onClick={() => history.push('/signup')} fullWidth>Signup</Button>
-                </Box>
-            </form>
+            <Paper elevation={3}>
+                <form noValidate style={formStyles} onSubmit={handleSubmit(onSubmit)}>
+                    <Typography align='center' fontWeight='bold'>Login</Typography>
+                    <Box>
+                        <TextField
+                            {...register('username')}
+                            error={!!errors.username}
+                            helperText={errors?.username?.message}
+                            type='text'
+                            label='Username'
+                            margin='normal'
+                            fullWidth
+                        />
+                    </Box>
+                    <Box>
+                        <TextField
+                            {...register('password')}
+                            error={!!errors.password}
+                            helperText={errors?.password?.message}
+                            type='password'
+                            label='Password'
+                            margin='normal'
+                            fullWidth
+                        />
+                    </Box>
+                    <Box mt={2}>
+                        <Button fullWidth variant='contained' type='submit'>Submit</Button>
+                    </Box>
+                    <Box mt={2}>
+                        <Button onClick={() => history.push('/signup')} fullWidth>Signup</Button>
+                    </Box>
+                </form>
+            </Paper>
         </Container>
     )
 }

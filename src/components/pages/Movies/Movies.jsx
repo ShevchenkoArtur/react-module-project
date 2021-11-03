@@ -1,15 +1,16 @@
 import React, {useEffect} from 'react';
-import PaginationSize from "../../PaginationSize/PaginationSize";
+import PaginationSize from "../../UI/PaginationSize/PaginationSize";
 import {useDispatch, useSelector} from "react-redux";
 import getMoviesAsync from "../../../redux/reducers/movies/thunks/getMoviesAsync";
 import Movie from "./Movie/Movie";
+import Loader from '../../UI/Loader/Loader';
 
 const Movies = () => {
-    const {movies} = useSelector(state => state.movies)
+    const {movies, isLoading, pagination} = useSelector(state => state.movies)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getMoviesAsync())
+        dispatch(getMoviesAsync(pagination.page))
     }, [dispatch])
 
     const renderMovies = () => {
@@ -18,13 +19,22 @@ const Movies = () => {
         )
     }
 
+    const onChangePage = (event, value) => {
+        dispatch(getMoviesAsync(value))
+    }
+
     return (
         <>
             Movies
             <div>
-                {renderMovies()}
+                {
+                    !isLoading && renderMovies()
+                }
+                {
+                    isLoading && <Loader />
+                }
             </div>
-            <PaginationSize/>
+            <PaginationSize count={pagination.totalPages} page={pagination.page} handleChange={onChangePage}/>
         </>
     )
 }

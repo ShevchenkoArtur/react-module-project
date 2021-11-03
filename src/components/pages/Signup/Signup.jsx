@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Box, Container, TextField, Typography} from '@mui/material';
+import {Box, Container, Paper, TextField, Typography} from '@mui/material';
 import Button from '@mui/material/Button';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useHistory} from 'react-router-dom';
@@ -19,7 +19,6 @@ const Signup = () => {
 
     const formStyles = {
         maxWidth: '600px',
-        border: '1px solid grey',
         borderRadius: '5px',
         padding: '30px'
     }
@@ -36,51 +35,53 @@ const Signup = () => {
 
     return (
         <Container style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh'}}>
-            <form noValidate style={formStyles} onSubmit={handleSubmit(onSubmit)}>
-                <Typography align='center' fontWeight='bold'>Step 1</Typography>
-                <Box>
-                    <TextField
-                        {...register('firstName')}
-                        error={!!errors.firstName}
-                        onChange={(e) => dispatch(updateRegisterUserData('firstName', e.target.value))}
-                        helperText={errors?.firstName?.message}
-                        type='text'
-                        label='First Name'
-                        margin='normal'
-                        fullWidth
-                    />
-                </Box>
-                <Box>
-                    <TextField
-                        {...register('lastName')}
-                        error={!!errors.lastName}
-                        onChange={(e) => dispatch(updateRegisterUserData('lastName', e.target.value))}
-                        helperText={errors?.lastName?.message}
-                        type='text'
-                        label='Last Name'
-                        margin='normal'
-                        fullWidth
-                    />
-                </Box>
-                <Box>
-                    <TextField
-                        {...register('username')}
-                        error={!!errors.username}
-                        onChange={(e) => dispatch(updateRegisterUserData('username', e.target.value))}
-                        helperText={errors?.username?.message}
-                        type='text'
-                        label='Username'
-                        margin='normal'
-                        fullWidth
-                    />
-                </Box>
-                <Box mt={2}>
-                    <Button fullWidth variant='contained' type='submit'>Next Step</Button>
-                </Box>
-                <Box mt={2}>
-                    <Button onClick={() => history.push('/')} fullWidth>Login</Button>
-                </Box>
-            </form>
+            <Paper elevation={3}>
+                <form noValidate style={formStyles} onSubmit={handleSubmit(onSubmit)}>
+                    <Typography align='center' fontWeight='bold'>Step 1</Typography>
+                    <Box>
+                        <TextField
+                            {...register('firstName')}
+                            error={!!errors.firstName}
+                            onChange={(e) => dispatch(updateRegisterUserData('firstName', e.target.value))}
+                            helperText={errors?.firstName?.message}
+                            type='text'
+                            label='First Name'
+                            margin='normal'
+                            fullWidth
+                        />
+                    </Box>
+                    <Box>
+                        <TextField
+                            {...register('lastName')}
+                            error={!!errors.lastName}
+                            onChange={(e) => dispatch(updateRegisterUserData('lastName', e.target.value))}
+                            helperText={errors?.lastName?.message}
+                            type='text'
+                            label='Last Name'
+                            margin='normal'
+                            fullWidth
+                        />
+                    </Box>
+                    <Box>
+                        <TextField
+                            {...register('username')}
+                            error={!!errors.username}
+                            onChange={(e) => dispatch(updateRegisterUserData('username', e.target.value))}
+                            helperText={errors?.username?.message}
+                            type='text'
+                            label='Username'
+                            margin='normal'
+                            fullWidth
+                        />
+                    </Box>
+                    <Box mt={2}>
+                        <Button fullWidth variant='contained' type='submit'>Next Step</Button>
+                    </Box>
+                    <Box mt={2}>
+                        <Button onClick={() => history.push('/')} fullWidth>Login</Button>
+                    </Box>
+                </form>
+            </Paper>
         </Container>
     )
 }

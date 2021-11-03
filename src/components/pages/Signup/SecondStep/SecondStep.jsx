@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Box, Container, InputLabel, MenuItem, Select, TextField, Typography} from '@mui/material';
+import {Box, Container, InputLabel, MenuItem, Paper, Select, TextField, Typography} from '@mui/material';
 import Button from '@mui/material/Button';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useHistory} from 'react-router-dom';
@@ -21,7 +21,6 @@ const SecondStep = () => {
 
     const formStyles = {
         maxWidth: '600px',
-        border: '1px solid grey',
         borderRadius: '5px',
         padding: '30px'
     }
@@ -42,49 +41,51 @@ const SecondStep = () => {
 
     return (
         <Container style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh'}}>
-            <form noValidate style={formStyles} onSubmit={handleSubmit(onSubmit)}>
-                <Typography align='center' fontWeight='bold'>Step 2</Typography>
-                <Box mt={3}>
-                    <TextField
-                        {...register('email')}
-                        error={!!errors.email}
-                        helperText={errors?.email?.message}
-                        onChange={(e) => dispatch(updateRegisterUserData('email', e.target.value))}
-                        type='email'
-                        label='Email'
-                        fullWidth
-                    />
-                </Box>
+            <Paper elevation={3}>
+                <form noValidate style={formStyles} onSubmit={handleSubmit(onSubmit)}>
+                    <Typography align='center' fontWeight='bold'>Step 2</Typography>
+                    <Box mt={3}>
+                        <TextField
+                            {...register('email')}
+                            error={!!errors.email}
+                            helperText={errors?.email?.message}
+                            onChange={(e) => dispatch(updateRegisterUserData('email', e.target.value))}
+                            type='email'
+                            label='Email'
+                            fullWidth
+                        />
+                    </Box>
 
-                <Box mt={3}>
-                    <DatePicker
-                        value={registerInputValues.birthday}
-                        onChange={(newValue) => dispatch(updateRegisterUserData('birthday', newValue))}
-                    />
-                </Box>
+                    <Box mt={3}>
+                        <DatePicker
+                            value={registerInputValues.birthday}
+                            onChange={(newValue) => dispatch(updateRegisterUserData('birthday', newValue))}
+                        />
+                    </Box>
 
-                <Box mt={3}>
-                    <FormControl fullWidth>
-                        <InputLabel id="gender-label">Gender</InputLabel>
-                        <Select
-                            labelId="gender-label"
-                            value={registerInputValues.gender}
-                            onChange={(e) => dispatch(updateRegisterUserData('gender', e.target.value))}
-                            label="Gender"
-                        >
-                            <MenuItem value='Male'>Male</MenuItem>
-                            <MenuItem value='Female'>Female</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
+                    <Box mt={3}>
+                        <FormControl fullWidth>
+                            <InputLabel id="gender-label">Gender</InputLabel>
+                            <Select
+                                labelId="gender-label"
+                                value={registerInputValues.gender}
+                                onChange={(e) => dispatch(updateRegisterUserData('gender', e.target.value))}
+                                label="Gender"
+                            >
+                                <MenuItem value='Male'>Male</MenuItem>
+                                <MenuItem value='Female'>Female</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
 
-                <Box mt={3}>
-                    <Button fullWidth variant='contained' type='submit'>Next Step</Button>
-                </Box>
-                <Box mt={3}>
-                    <Button onClick={() => history.push('/signup')} fullWidth>Previous</Button>
-                </Box>
-            </form>
+                    <Box mt={3}>
+                        <Button fullWidth variant='contained' type='submit'>Next Step</Button>
+                    </Box>
+                    <Box mt={3}>
+                        <Button onClick={() => history.push('/signup')} fullWidth>Previous</Button>
+                    </Box>
+                </form>
+            </Paper>
         </Container>
     )
 }
