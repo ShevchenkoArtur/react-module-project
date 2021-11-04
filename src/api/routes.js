@@ -12,3 +12,11 @@ export async function fetchMovies(page) {
 export async function fetchMovie(id) {
     return await apiInstance.get(`/movie/${id}`)
 }
+
+export async function searchMovie(query) {
+    return await apiInstance.get('/search/movie', {
+        params: {
+            query
+        }
+    })
+}

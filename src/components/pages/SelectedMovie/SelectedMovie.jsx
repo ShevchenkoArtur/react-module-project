@@ -13,10 +13,8 @@ const SelectedMovie = () => {
     const {id} = useParams()
 
     const imgBoxStyles = {
-        background: `no-repeat center/cover grey url(${baseImgUrl}${selectedMovie.backdrop_path})`
+        background: `no-repeat center/cover grey url(${baseImgUrl}${selectedMovie?.backdrop_path})`
     }
-
-    console.log(`${baseImgUrl}${selectedMovie.backdrop_path}`)
 
     useEffect(() => {
         dispatch(getMovieAsync(id))
@@ -28,9 +26,9 @@ const SelectedMovie = () => {
                 <img style={{maxWidth: '100%', borderRadius: '10px'}} width='300'
                      src={`${baseImgUrl}/${selectedMovie?.poster_path}`} alt='Poster'/>
                 <Box style={{color: '#fff'}}>
-                    <Typography variant='h3'>{selectedMovie.original_title}</Typography>
+                    <Typography variant='h3'>{selectedMovie?.original_title}</Typography>
                     <Typography fontWeight='bold'>Overview</Typography>
-                    <Typography>{selectedMovie.overview}</Typography>
+                    <Typography>{selectedMovie?.overview}</Typography>
                 </Box>
             </Box>
         </Box>

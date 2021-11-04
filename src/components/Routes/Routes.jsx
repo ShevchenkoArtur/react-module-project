@@ -10,10 +10,8 @@ const Routes = () => {
         return routesArr.map((el, i) => {
             if (isLogin) {
                 return <Route key={i} path={el.path} component={el.component} exact/>
-            } else {
-                if (!el.private) {
-                    return <Route key={i} path={el.path} component={el.component} exact/>
-                }
+            } else if (!el.private) {
+                return <Route key={i} path={el.path} component={el.component} exact/>
             }
         })
     }

@@ -4,16 +4,17 @@ import Button from '@mui/material/Button';
 import {useHistory} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../../redux/reducers/users/actions/creators";
-import LoginValidation from "../../../validationSchemes/LoginValidation";
+import loginValidation from "../../../validationSchemes/loginValidation";
 
 const Login = () => {
-    const history = useHistory()
+    const {registeredUserData} = useSelector(state => state.users)
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const {handleSubmit, register, formState: {errors}} = useForm({
-        resolver: yupResolver(LoginValidation()),
+        resolver: yupResolver(loginValidation(registeredUserData?.username, registeredUserData?.password)),
         mode: 'onSubmit'
     })
 

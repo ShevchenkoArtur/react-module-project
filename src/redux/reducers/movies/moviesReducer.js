@@ -7,7 +7,8 @@ const initialState = {
     pagination: {
         page: 1,
         totalPages: 0
-    }
+    },
+    searchInputValue: '',
 }
 
 const moviesReducer = (state=initialState, action) => {
@@ -35,6 +36,16 @@ const moviesReducer = (state=initialState, action) => {
                     page: action.payload.page,
                     totalPages: action.payload.totalPages
                 }
+            }
+        case moviesActions.UPDATE_SEARCH_INPUT_VALUE:
+            return {
+                ...state,
+                searchInputValue: action.payload.newValue
+            }
+        case moviesActions.SEARCH_FILM:
+            return {
+                ...state,
+                movies: action.payload.movies
             }
         default:
             return state

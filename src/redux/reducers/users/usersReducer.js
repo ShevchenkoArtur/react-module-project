@@ -7,7 +7,7 @@ const initialState = {
         firstName: '',
         lastName: '',
         username: '',
-        birthday: new Date(),
+        birthday: null,
         gender: '',
         email: '',
         password: '',
