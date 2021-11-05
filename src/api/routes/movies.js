@@ -1,4 +1,4 @@
-import {apiInstance} from './api';
+import {apiInstance} from '../api';
 
 export async function fetchMovies(page) {
     return await apiInstance.get(`/movie/popular`, {

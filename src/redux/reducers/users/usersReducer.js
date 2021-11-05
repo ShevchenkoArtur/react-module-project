@@ -2,6 +2,7 @@ import usersActions from "./actions/constants";
 
 const initialState = {
     isLogin: true,
+    sessionId: '',
 
     registerInputValues: {
         firstName: '',
@@ -14,10 +15,19 @@ const initialState = {
         confirmedPassword: ''
     },
 
-    registeredUserData: {}
+    registeredUserData: {
+        firstName: '',
+        lastName: '',
+        username: '1',
+        birthday: null,
+        gender: '',
+        email: '',
+        password: '1',
+        confirmedPassword: '1'
+    }
 }
 
-const usersReducer = (state=initialState, action) => {
+const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case usersActions.SIGNUP:
             return {
@@ -31,6 +41,11 @@ const usersReducer = (state=initialState, action) => {
                 ...state,
                 isLogin: true
             }
+        case usersActions.LOGOUT:
+            return {
+                ...state,
+                sessionId: ''
+            }
         case usersActions.UPDATE_REGISTER_USER_DATA:
             return {
                 ...state,
@@ -38,6 +53,11 @@ const usersReducer = (state=initialState, action) => {
                     ...state.registerInputValues,
                     [action.payload.key]: action.payload.value
                 }
+            }
+        case usersActions.GET_SESSION_ID:
+            return {
+                ...state,
+                sessionId: action.payload.sessionId
             }
         default:
             return state

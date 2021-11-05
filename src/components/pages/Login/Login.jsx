@@ -7,6 +7,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../../redux/reducers/users/actions/creators";
 import loginValidation from "../../../validationSchemes/loginValidation";
+import {generateToken} from '../../../api/routes/auth';
 
 const Login = () => {
     const {registeredUserData} = useSelector(state => state.users)
@@ -25,7 +26,12 @@ const Login = () => {
 
     const onSubmit = (data) => {
         dispatch(login())
-        history.push('/movies')
+
+        generateToken()
+            .then(res => {
+                const redirect = `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=http://localhost:3000/movies`
+                window.location.replace(redirect)
+            })
     }
 
     return (

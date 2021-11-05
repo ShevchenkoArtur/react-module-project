@@ -1,4 +1,4 @@
-import {fetchMovies} from "../../../../api/routes";
+import {fetchMovies} from "../../../../api/routes/movies";
 import {getMovies, toggleLoader, updatePagination} from "../actions/creators";
 
 const getMoviesAsync = (page) => {

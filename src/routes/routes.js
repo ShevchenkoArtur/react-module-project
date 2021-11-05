@@ -9,7 +9,7 @@ import SelectedMovie from '../components/pages/SelectedMovie/SelectedMovie';
 export const routes = [
     {path: '/', component: Login, private: false},
     {path: '/error', component: Error, private: false},
-    {path: '/movies', component: Movies, private: true},
+    {path: '/movies', component: Movies, private: false},
     {path: '/movie/:id', component: SelectedMovie, private: true},
     {path: '/signup', component: Signup, private: false},
     {path: '/second-step', component: SecondStep, private: false},

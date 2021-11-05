@@ -9,11 +9,26 @@ import {Button, Container, TextField, Typography} from '@mui/material';
 import SimpleAccordion from '../../UI/SimpleAccordion/SimpleAccordion';
 import {updateSearchInputValue} from '../../../redux/reducers/movies/actions/creators';
 import searchMovieAsync from '../../../redux/reducers/movies/thunks/searchMovieAsync';
+import generateSessionIdAsync from '../../../redux/reducers/users/thunks/generateSessionIdAsync';
+import {useLocation} from 'react-router-dom';
+import {getSessionId} from '../../../redux/reducers/users/actions/creators';
 
 const Movies = () => {
     const [findDisabled, setFindDisabled] = useState(true)
     const {movies, isLoading, pagination, searchInputValue} = useSelector(state => state.movies)
     const dispatch = useDispatch()
+    const urlParams = useLocation().search
+
+    useEffect(() => {
+        const requestToken = new URLSearchParams(urlParams).get('request_token')
+        if (localStorage.getItem('session_id')) {
+            dispatch(getSessionId(localStorage.getItem('session_id')))
+        }
+
+        if (requestToken && !localStorage.getItem('session_id')) {
+            dispatch(generateSessionIdAsync(requestToken))
+        }
+    }, [dispatch, urlParams])
 
     useEffect(() => {
         dispatch(getMoviesAsync(pagination.page))

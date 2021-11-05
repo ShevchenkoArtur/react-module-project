@@ -4,11 +4,11 @@ import {routes as routesArr} from '../../routes/routes';
 import {useSelector} from 'react-redux';
 
 const Routes = () => {
-    const {isLogin} = useSelector(state => state.users)
+    const {sessionId} = useSelector(state => state.users)
 
     const renderRoutes = () => {
         return routesArr.map((el, i) => {
-            if (isLogin) {
+            if (sessionId) {
                 return <Route key={i} path={el.path} component={el.component} exact/>
             } else if (!el.private) {
                 return <Route key={i} path={el.path} component={el.component} exact/>

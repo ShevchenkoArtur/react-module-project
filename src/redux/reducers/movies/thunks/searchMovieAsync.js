@@ -1,5 +1,5 @@
 import {searchFilm, toggleLoader} from '../actions/creators';
-import {searchMovie} from '../../../../api/routes';
+import {searchMovie} from '../../../../api/routes/movies';
 
 const searchMovieAsync = (query) => {
     return (dispatch) => {
