@@ -49,48 +49,46 @@ const Movies = () => {
 
     return (
         <>
-            <Container style={{display: 'flex', marginTop: '30px'}}>
-                <Box mr={3}>
-                    <SimpleAccordion>
-                        <TextField
-                            placeholder='Enter a movie name...'
-                            fullWidth
-                            value={searchInputValue}
-                            onChange={updateSearchValue}
-                        />
-                        <Box mt={2}>
-                            <Button
-                                onClick={onSearchMovie}
-                                variant='outlined'
-                                fullWidth
-                                style={{marginTop: '8px'}}
-                                disabled={findDisabled}
-                            >
-                                Find
-                            </Button>
-                        </Box>
-                    </SimpleAccordion>
-                </Box>
-                <Box style={{display: 'flex', flexWrap: 'wrap', margin: '-16px -8px 0 -8px'}}>
-                    {
-                        !isLoading && renderMovies()
-                    }
-                    {
-                        isLoading && <Loader/>
-                    }
-                </Box>
-            </Container>
             {
-                isLoading || !movies.length
+                isLoading
                     ?
-                    ''
+                    <Loader/>
                     :
-                    <Box style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} mt={5}>
-                        <PaginationSize count={pagination.totalPages} page={pagination.page}
-                                        handleChange={onChangePage}/>
-                    </Box>
+                    <>
+                        <Container style={{display: 'flex', marginTop: '30px'}}>
+                            <Box mr={3}>
+                                <SimpleAccordion>
+                                    <TextField
+                                        placeholder='Enter a movie name...'
+                                        fullWidth
+                                        value={searchInputValue}
+                                        onChange={updateSearchValue}
+                                    />
+                                    <Box mt={2}>
+                                        <Button
+                                            onClick={onSearchMovie}
+                                            variant='outlined'
+                                            fullWidth
+                                            style={{marginTop: '8px'}}
+                                            disabled={findDisabled}
+                                        >
+                                            Find
+                                        </Button>
+                                    </Box>
+                                </SimpleAccordion>
+                            </Box>
+                            <Box style={{display: 'flex', flexWrap: 'wrap', margin: '-16px -8px 0 -8px'}}>
+                                {
+                                    renderMovies()
+                                }
+                            </Box>
+                        </Container>
+                        <Box style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} mt={5}>
+                            <PaginationSize count={pagination.totalPages} page={pagination.page}
+                                            handleChange={onChangePage}/>
+                        </Box>
+                    </>
             }
-
         </>
     )
 }
