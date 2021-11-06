@@ -3,6 +3,7 @@ import usersActions from "./actions/constants";
 const initialState = {
     isLogin: true,
     sessionId: '',
+    userAccount: null,
 
     registerInputValues: {
         firstName: '',
@@ -41,10 +42,16 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 isLogin: true
             }
+        case usersActions.GET_USER_ACCOUNT:
+            return {
+                ...state,
+                userAccount: action.payload.data
+            }
         case usersActions.LOGOUT:
             return {
                 ...state,
-                sessionId: ''
+                sessionId: '',
+                userAccount: null,
             }
         case usersActions.UPDATE_REGISTER_USER_DATA:
             return {

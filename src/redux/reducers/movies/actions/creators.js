@@ -12,3 +12,12 @@ export const updateSearchInputValue = (newValue) => ({
     type: moviesActions.UPDATE_SEARCH_INPUT_VALUE,
     payload: {newValue}
 })
+export const updateMovieAccountStates = (movieState) => ({
+    type: moviesActions.UPDATE_MOVIE_ACCOUNT_STATES,
+    payload: {movieState}
+})
+
+export const updateMovieFavorite = (movieId, bool) => ({
+    type: moviesActions.UPDATE_MOVIE_FAVORITE,
+    payload: {movieId, bool}
+})

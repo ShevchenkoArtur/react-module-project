@@ -16,4 +16,12 @@ export async function deleteSession(session_id) {
     })
 }
 
+export async function getAccount(session_id) {
+    return await apiInstance.get('/account', {
+        params: {
+            session_id
+        }
+    })
+}
+
 

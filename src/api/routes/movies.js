@@ -20,3 +20,19 @@ export async function searchMovie(query) {
         }
     })
 }
+
+export async function getMovieAccountState(session_id, movieId) {
+    return await apiInstance.get(`/movie/${movieId}/account_states`, {
+        params: {
+            session_id
+        }
+    })
+}
+
+export async function markAsFavorite(data, session_id, accountId) {
+    return await apiInstance.post(`/account/${accountId}/favorite`, data, {
+        params: {
+            session_id
+        }
+    })
+}

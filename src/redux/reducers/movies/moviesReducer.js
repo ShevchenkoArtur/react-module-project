@@ -2,6 +2,7 @@ import moviesActions from "./actions/constants";
 
 const initialState = {
     movies: [],
+    moviesAccountStates: [],
     selectedMovie: {},
     isLoading: false,
     pagination: {
@@ -46,6 +47,24 @@ const moviesReducer = (state=initialState, action) => {
             return {
                 ...state,
                 movies: action.payload.movies
+            }
+        case moviesActions.UPDATE_MOVIE_ACCOUNT_STATES:
+            return {
+                ...state,
+                moviesAccountStates: [...state.moviesAccountStates, action.payload.movieState]
+            }
+        case moviesActions.UPDATE_MOVIE_FAVORITE:
+            return {
+                ...state,
+                moviesAccountStates: state.moviesAccountStates.map(el => {
+                    if(el.id === action.payload.movieId) {
+                        return {
+                            ...el,
+                            favorite: action.payload.bool
+                        }
+                    }
+                    return el
+                })
             }
         default:
             return state

@@ -12,10 +12,12 @@ import searchMovieAsync from '../../../redux/reducers/movies/thunks/searchMovieA
 import generateSessionIdAsync from '../../../redux/reducers/users/thunks/generateSessionIdAsync';
 import {useLocation} from 'react-router-dom';
 import {getSessionId} from '../../../redux/reducers/users/actions/creators';
+import getAccountAsync from '../../../redux/reducers/users/thunks/getAccountAsync';
 
 const Movies = () => {
     const [findDisabled, setFindDisabled] = useState(true)
     const {movies, isLoading, pagination, searchInputValue} = useSelector(state => state.movies)
+    const {userAccount, sessionId} = useSelector(state => state.users)
     const dispatch = useDispatch()
     const urlParams = useLocation().search
 
@@ -29,6 +31,13 @@ const Movies = () => {
             dispatch(generateSessionIdAsync(requestToken))
         }
     }, [dispatch, urlParams])
+
+    useEffect(() => {
+        if(!userAccount && sessionId) {
+            console.log(sessionId)
+            dispatch(getAccountAsync(sessionId))
+        }
+    }, [sessionId])
 
     useEffect(() => {
         dispatch(getMoviesAsync(pagination.page))
