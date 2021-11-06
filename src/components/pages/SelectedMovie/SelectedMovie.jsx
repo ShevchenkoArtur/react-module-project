@@ -8,7 +8,7 @@ import {Typography} from '@mui/material';
 import style from './SelectedMovie.module.css'
 
 const SelectedMovie = () => {
-    const {selectedMovie} = useSelector(state => state.movies)
+    const {selectedMovie, isLoading} = useSelector(state => state.movies)
     const dispatch = useDispatch()
     const {id} = useParams()
 
@@ -21,17 +21,22 @@ const SelectedMovie = () => {
     }, [dispatch, id])
 
     return (
-        <Box className={style.imgBox} style={imgBoxStyles}>
-            <Box style={{zIndex: '1', display: 'flex'}}>
-                <img style={{maxWidth: '100%', borderRadius: '10px'}} width='300'
-                     src={`${baseImgUrl}/${selectedMovie?.poster_path}`} alt='Poster'/>
-                <Box style={{color: '#fff'}}>
-                    <Typography variant='h3'>{selectedMovie?.original_title}</Typography>
-                    <Typography fontWeight='bold'>Overview</Typography>
-                    <Typography>{selectedMovie?.overview}</Typography>
+        <>
+            {
+                !isLoading &&
+                <Box className={style.imgBox} style={imgBoxStyles}>
+                    <Box style={{zIndex: '1', display: 'flex'}}>
+                        <img style={{maxWidth: '100%', borderRadius: '10px'}} width='300'
+                             src={`${baseImgUrl}/${selectedMovie?.poster_path}`} alt='Poster'/>
+                        <Box style={{color: '#fff'}}>
+                            <Typography variant='h3'>{selectedMovie?.original_title}</Typography>
+                            <Typography fontWeight='bold'>Overview</Typography>
+                            <Typography>{selectedMovie?.overview}</Typography>
+                        </Box>
+                    </Box>
                 </Box>
-            </Box>
-        </Box>
+            }
+        </>
     )
 }
 

@@ -23,7 +23,7 @@ const Movies = () => {
 
     useEffect(() => {
         const requestToken = new URLSearchParams(urlParams).get('request_token')
-        if (localStorage.getItem('session_id')) {
+        if (localStorage.getItem('session_id') && !sessionId) {
             dispatch(getSessionId(localStorage.getItem('session_id')))
         }
 
@@ -33,14 +33,16 @@ const Movies = () => {
     }, [dispatch, urlParams])
 
     useEffect(() => {
-        if(!userAccount && sessionId) {
+        if (!userAccount && sessionId) {
             console.log(sessionId)
             dispatch(getAccountAsync(sessionId))
         }
     }, [sessionId])
 
     useEffect(() => {
-        dispatch(getMoviesAsync(pagination.page))
+        if (!movies.length) {
+            dispatch(getMoviesAsync(pagination.page))
+        }
     }, [dispatch, pagination.page])
 
     useEffect(() => {
