@@ -28,7 +28,7 @@ const AccordionSearch = () => {
     }
 
     return (
-        <SimpleAccordion>
+        <SimpleAccordion title='Search'>
             <TextField
                 placeholder='Enter a movie name...'
                 fullWidth

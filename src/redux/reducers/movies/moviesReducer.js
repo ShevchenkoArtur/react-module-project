@@ -2,6 +2,7 @@ import moviesActions from "./actions/constants";
 
 const initialState = {
     movies: [],
+    genres: [],
     moviesAccountStates: [],
     selectedMovie: {},
     isLoading: false,
@@ -23,6 +24,11 @@ const moviesReducer = (state=initialState, action) => {
             return {
                 ...state,
                 selectedMovie: action.payload.movie
+            }
+        case moviesActions.GET_GENRES:
+            return {
+                ...state,
+                genres: action.payload.genres
             }
         case moviesActions.TOGGLE_LOADER:
             return {

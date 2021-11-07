@@ -36,3 +36,7 @@ export async function markAsFavorite(data, session_id, accountId) {
         }
     })
 }
+
+export async function getGenresList() {
+    return await apiInstance.get('/genre/movie/list')
+}

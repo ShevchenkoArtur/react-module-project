@@ -2,6 +2,7 @@ import moviesActions from "./constants";
 
 export const getMovies = (movies) => ({type: moviesActions.GET_MOVIES, payload: {movies}})
 export const getMovie = (movie) => ({type: moviesActions.GET_MOVIE, payload: {movie}})
+export const getGenres = (genres) => ({type: moviesActions.GET_GENRES, payload: {genres}})
 export const searchFilm = (movies) => ({type: moviesActions.SEARCH_FILM, payload: {movies}})
 export const toggleLoader = () => ({type: moviesActions.TOGGLE_LOADER})
 export const updatePagination = (totalPages, page) => ({
