@@ -26,10 +26,10 @@ const Movie = ({movie}) => {
     }
 
     useEffect(() => {
-        if (!moviesAccountStates.find(el => el.id === movie.id).id) {
+        if (!moviesAccountStates.find(el => el.id === movie.id)?.id) {
             dispatch(getMovieAccountStateAsync(sessionId, movie.id))
         }
-    }, [])
+    }, [dispatch, moviesAccountStates, movie.id, sessionId])
 
     const markAsFavorite = () => {
         const data = {
