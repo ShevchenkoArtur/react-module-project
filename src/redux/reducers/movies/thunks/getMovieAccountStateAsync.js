@@ -1,5 +1,5 @@
 import {getMovieAccountState} from '../../../../api/routes/movies';
-import {toggleLoader, updateMovieAccountStates} from '../actions/creators';
+import {updateMovieAccountStates} from '../actions/creators';
 
 const getMovieAccountStateAsync = (sessionId, movieId) => {
     return (dispatch) => {

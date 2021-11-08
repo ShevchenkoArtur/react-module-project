@@ -12,6 +12,12 @@ import deleteSessionAsync from '../../redux/reducers/users/thunks/deleteSessionA
 import Box from '@mui/material/Box';
 import {useHistory} from 'react-router-dom'
 import MoviesMenu from './MoviesMenu/MoviesMenu';
+import AccountMenu from '../UI/AccountMenu/AccountMenu';
+import MenuItem from '@mui/material/MenuItem';
+import Avatar from '@mui/material/Avatar';
+import Divider from '@mui/material/Divider';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Logout from '@mui/icons-material/Logout';
 
 function HideOnScroll(props) {
     const {children} = props
@@ -46,6 +52,18 @@ export default function HideAppBar(props) {
                         <Box>
                             <Button onClick={onLogout}>Log out</Button>
                         </Box>
+                        <AccountMenu>
+                            <MenuItem>
+                                <Avatar/> Profile
+                            </MenuItem>
+                            <Divider/>
+                            <MenuItem>
+                                <ListItemIcon>
+                                    <Logout fontSize="small"/>
+                                </ListItemIcon>
+                                Logout
+                            </MenuItem>
+                        </AccountMenu>
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>

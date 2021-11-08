@@ -8,10 +8,12 @@ const Routes = () => {
 
     const renderRoutes = () => {
         return routesArr.map((el, i) => {
-            if (sessionId) {
+            if (localStorage.getItem('session_id')) {
                 return <Route key={i} path={el.path} component={el.component} exact/>
-            } else if (!el.private) {
-                return <Route key={i} path={el.path} component={el.component} exact/>
+            } else {
+                if(!el.private) {
+                    return <Route key={i} path={el.path} component={el.component} exact/>
+                }
             }
         })
     }

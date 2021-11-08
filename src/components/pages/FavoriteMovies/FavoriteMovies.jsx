@@ -10,7 +10,7 @@ const FavoriteMovies = () => {
 
     useEffect(() => {
         if (!favoriteMovies.length) {
-            dispatch(getFavoriteMoviesAsync(userAccount.id, sessionId))
+            dispatch(getFavoriteMoviesAsync(userAccount?.id, sessionId))
         }
     }, [dispatch, favoriteMovies.length, sessionId, userAccount.id])
 

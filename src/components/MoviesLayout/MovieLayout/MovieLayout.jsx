@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import {CardActionArea} from '@mui/material';
 import {useHistory} from 'react-router-dom';
 import Box from '@mui/material/Box';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -20,6 +20,7 @@ const MovieLayout = ({movie}) => {
     const dispatch = useDispatch()
     const {moviesAccountStates} = useSelector(state => state.movies)
     const {sessionId, userAccount} = useSelector(state => state.users)
+    const [imgHover, setImgHover] = useState(false)
 
     const onFilmClick = () => {
         history.push(`/movie/${movie.id}`)
@@ -51,19 +52,37 @@ const MovieLayout = ({movie}) => {
     }
 
     const renderFavoriteIcon = () => {
+        const iconStyles = {
+            opacity: `${imgHover ? 1 : 0}`,
+            transition: '200ms',
+            position: 'absolute',
+            top: '5px',
+            right: '5px'
+        }
+
         const obj = moviesAccountStates.find(el => el.id === movie.id)
         if (obj) {
-            return obj.favorite ? <FavoriteIcon sx={{color: pink[500]}} onClick={unmarkAsFavorite}/> :
-                <FavoriteBorderIcon sx={{color: pink[500]}} onClick={markAsFavorite}/>
+            return (
+                obj.favorite
+                    ?
+                    <FavoriteIcon sx={{color: pink[500]}} style={iconStyles} onClick={unmarkAsFavorite}/>
+                    :
+                    <FavoriteBorderIcon sx={{color: pink[500]}} style={iconStyles} onClick={markAsFavorite}/>
+            )
         }
     }
 
     return (
         <Box style={{flexBasis: '18%', margin: '16px 8px 0 8px'}}>
-            <Card style={{display: 'flex', height: '100%'}}>
+            <Card
+                style={{display: 'flex', height: '100%'}}
+                onMouseEnter={() => setImgHover(true)}
+                onMouseLeave={() => setImgHover(false)}
+            >
                 <CardActionArea style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between',}}>
-                    <Box style={{position: 'relative'}}>
+                    <Box>
                         <CardMedia
+                            style={{position: 'relative'}}
                             component="img"
                             image={`${baseImgUrl}${movie?.poster_path}`}
                             alt="poster image"
