@@ -13,7 +13,7 @@ const AccordionGenres = () => {
         if (!genres.length) {
             dispatch(getGenresAsync())
         }
-    }, [])
+    }, [dispatch, genres.length])
     
     const renderGenresChips = () => {
         return genres.map(el => <Box key={el.id} mt={1} ml={1}><ChipBtn label={el.name}/></Box>)

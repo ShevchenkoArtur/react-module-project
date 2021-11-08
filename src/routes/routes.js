@@ -11,11 +11,11 @@ import AccountConnect from '../components/pages/Login/AccountConnect/AccountConn
 export const routes = [
     {path: '/', component: Login, private: false},
     {path: '/error', component: Error, private: false},
-    {path: '/movies', component: Movies, private: true},
     {path: '/connecting', component: AccountConnect, private: false},
-    {path: '/favorite', component: FavoriteMovies, private: true},
-    {path: '/movie/:id', component: SelectedMovie, private: true},
     {path: '/signup', component: Signup, private: false},
     {path: '/second-step', component: SecondStep, private: false},
     {path: '/third-step', component: ThirdStep, private: false},
+    {path: '/movies', component: Movies, private: true},
+    {path: '/movie/:id', component: SelectedMovie, private: true},
+    {path: '/favorite', component: FavoriteMovies, private: true},
 ]

@@ -7,9 +7,7 @@ import Slide from '@mui/material/Slide';
 import ThemeSwitch from '../UI/ThemeSwitch/ThemeSwitch';
 import {useDispatch, useSelector} from 'react-redux';
 import {toggleTheme} from '../../redux/reducers/theme/actions/creators';
-import Button from '@mui/material/Button';
 import deleteSessionAsync from '../../redux/reducers/users/thunks/deleteSessionAsync';
-import Box from '@mui/material/Box';
 import {useHistory} from 'react-router-dom'
 import MoviesMenu from './MoviesMenu/MoviesMenu';
 import AccountMenu from '../UI/AccountMenu/AccountMenu';
@@ -49,15 +47,12 @@ export default function HideAppBar(props) {
                     <Toolbar>
                         <MoviesMenu/>
                         <ThemeSwitch checked={!isLightMode} onClick={() => dispatch(toggleTheme())}/>
-                        <Box>
-                            <Button onClick={onLogout}>Log out</Button>
-                        </Box>
                         <AccountMenu>
                             <MenuItem>
                                 <Avatar/> Profile
                             </MenuItem>
                             <Divider/>
-                            <MenuItem>
+                            <MenuItem onClick={onLogout}>
                                 <ListItemIcon>
                                     <Logout fontSize="small"/>
                                 </ListItemIcon>

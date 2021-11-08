@@ -7,15 +7,15 @@ const Routes = () => {
     const {sessionId} = useSelector(state => state.users)
 
     const renderRoutes = () => {
-        return routesArr.map((el, i) => {
-            if (localStorage.getItem('session_id')) {
-                return <Route key={i} path={el.path} component={el.component} exact/>
-            } else {
-                if(!el.private) {
-                    return <Route key={i} path={el.path} component={el.component} exact/>
-                }
-            }
-        })
+        return (
+            localStorage.getItem('session_id') || sessionId
+                ?
+                routesArr.map((el, i) => <Route key={i} path={el.path} component={el.component} exact/>)
+                :
+                routesArr.filter(el => !el.private).map((el, i) => <Route key={i} path={el.path}
+                                                                          component={el.component}
+                                                                          exact/>)
+        )
     }
 
     return (
