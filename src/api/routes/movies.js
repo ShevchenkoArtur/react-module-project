@@ -13,6 +13,15 @@ export async function fetchMovie(id) {
     return await apiInstance.get(`/movie/${id}`)
 }
 
+export async function fetchFavoriteMovies(accountId, session_id, page) {
+    return await apiInstance.get(`/account/${accountId}/favorite/movies`, {
+        params: {
+            session_id,
+            page
+        }
+    })
+}
+
 export async function searchMovie(query) {
     return await apiInstance.get('/search/movie', {
         params: {

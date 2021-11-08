@@ -29,7 +29,7 @@ const Login = () => {
 
         generateToken()
             .then(res => {
-                const redirect = `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=http://localhost:3000/movies`
+                const redirect = `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=http://localhost:3000/connecting`
                 window.location.replace(redirect)
             })
     }

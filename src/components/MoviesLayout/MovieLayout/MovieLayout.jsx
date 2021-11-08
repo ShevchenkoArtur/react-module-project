@@ -4,18 +4,18 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import {CardActionArea} from '@mui/material';
-import {baseImgUrl} from '../../../../api/api';
 import {useHistory} from 'react-router-dom';
 import Box from '@mui/material/Box';
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import getMovieAccountStateAsync from '../../../../redux/reducers/movies/thunks/getMovieAccountStateAsync';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {pink} from '@mui/material/colors';
-import markAsFavoriteAsync from '../../../../redux/reducers/movies/thunks/markAsFavoriteAsync';
+import {baseImgUrl} from '../../../api/api';
+import getMovieAccountStateAsync from '../../../redux/reducers/movies/thunks/getMovieAccountStateAsync';
+import markAsFavoriteAsync from '../../../redux/reducers/movies/thunks/markAsFavoriteAsync';
 
-const Movie = ({movie}) => {
+const MovieLayout = ({movie}) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const {moviesAccountStates} = useSelector(state => state.movies)
@@ -26,7 +26,7 @@ const Movie = ({movie}) => {
     }
 
     useEffect(() => {
-        if (!moviesAccountStates.find(el => el.id === movie.id)?.id) {
+        if (!moviesAccountStates.find(el => el.id === movie.id)?.id && sessionId) {
             dispatch(getMovieAccountStateAsync(sessionId, movie.id))
         }
     }, [dispatch, moviesAccountStates, movie.id, sessionId])
@@ -38,7 +38,7 @@ const Movie = ({movie}) => {
             favorite: true
         }
 
-        dispatch(markAsFavoriteAsync(data, sessionId, userAccount.id))
+        dispatch(markAsFavoriteAsync(data, sessionId, userAccount.id, movie))
     }
     const unmarkAsFavorite = () => {
         const data = {
@@ -47,7 +47,7 @@ const Movie = ({movie}) => {
             favorite: false
         }
 
-        dispatch(markAsFavoriteAsync(data, sessionId, userAccount.id))
+        dispatch(markAsFavoriteAsync(data, sessionId, userAccount.id, movie))
     }
 
     const renderFavoriteIcon = () => {
@@ -87,4 +87,4 @@ const Movie = ({movie}) => {
     )
 }
 
-export default Movie;
+export default MovieLayout;

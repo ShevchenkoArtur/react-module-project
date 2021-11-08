@@ -1,6 +1,7 @@
 import moviesActions from "./constants";
 
 export const getMovies = (movies) => ({type: moviesActions.GET_MOVIES, payload: {movies}})
+export const getFavoriteMovies = (movies) => ({type: moviesActions.GET_FAVORITE_MOVIES, payload: {movies}})
 export const getMovie = (movie) => ({type: moviesActions.GET_MOVIE, payload: {movie}})
 export const getGenres = (genres) => ({type: moviesActions.GET_GENRES, payload: {genres}})
 export const searchFilm = (movies) => ({type: moviesActions.SEARCH_FILM, payload: {movies}})
@@ -18,7 +19,7 @@ export const updateMovieAccountStates = (movieState) => ({
     payload: {movieState}
 })
 
-export const updateMovieFavorite = (movieId, bool) => ({
+export const updateMovieFavorite = (movieId, bool, movie) => ({
     type: moviesActions.UPDATE_MOVIE_FAVORITE,
-    payload: {movieId, bool}
+    payload: {movieId, bool, movie}
 })

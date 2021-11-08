@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import deleteSessionAsync from '../../redux/reducers/users/thunks/deleteSessionAsync';
 import Box from '@mui/material/Box';
 import {useHistory} from 'react-router-dom'
+import MoviesMenu from './MoviesMenu/MoviesMenu';
 
 function HideOnScroll(props) {
     const {children} = props
@@ -40,6 +41,7 @@ export default function HideAppBar(props) {
             <HideOnScroll {...props}>
                 <AppBar>
                     <Toolbar>
+                        <MoviesMenu/>
                         <ThemeSwitch checked={!isLightMode} onClick={() => dispatch(toggleTheme())}/>
                         <Box>
                             <Button onClick={onLogout}>Log out</Button>
