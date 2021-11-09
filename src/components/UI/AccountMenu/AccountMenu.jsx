@@ -4,8 +4,11 @@ import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import {useSelector} from 'react-redux';
+import {baseImgUrl} from '../../../api/api';
 
 const AccountMenu = ({children}) => {
+    const {userAccount} = useSelector(state => state.users)
     const [anchorEl, setAnchorEl] = React.useState(null)
     const open = Boolean(anchorEl)
     const handleClick = (event) => {
@@ -19,7 +22,10 @@ const AccountMenu = ({children}) => {
             <Box sx={{display: 'flex', alignItems: 'center', textAlign: 'center'}}>
                 <Tooltip title="Account settings">
                     <IconButton onClick={handleClick} size="small" sx={{ml: 2}}>
-                        <Avatar sx={{width: 32, height: 32}}>A</Avatar>
+                        <Avatar sx={{width: 32, height: 32}}>
+                            <img width='32' height='32' src={`${baseImgUrl}/${userAccount && userAccount.avatar.tmdb.avatar_path}`}
+                                 alt="avatar"/>
+                        </Avatar>
                     </IconButton>
                 </Tooltip>
             </Box>

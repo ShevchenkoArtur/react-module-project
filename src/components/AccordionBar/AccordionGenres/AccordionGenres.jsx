@@ -4,6 +4,7 @@ import ChipBtn from "../../UI/ChipBtn/ChipBtn";
 import {useDispatch, useSelector} from "react-redux";
 import getGenresAsync from "../../../redux/reducers/movies/thunks/getGenresAsync";
 import Box from "@mui/material/Box";
+import {Button} from '@mui/material';
 
 const AccordionGenres = () => {
     const {genres} = useSelector(state => state.movies)
@@ -23,6 +24,15 @@ const AccordionGenres = () => {
         <SimpleAccordion title='Genres'>
             <Box style={{display: 'flex', flexWrap: 'wrap'}}>
                 {renderGenresChips()}
+            </Box>
+            <Box mt={2}>
+                <Button
+                    variant='outlined'
+                    fullWidth
+                    style={{marginTop: '8px'}}
+                >
+                    Find
+                </Button>
             </Box>
         </SimpleAccordion>
     )

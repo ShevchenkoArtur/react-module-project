@@ -5,12 +5,12 @@ import DateAdapter from '@mui/lab/AdapterMoment';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 
-const DatePicker = ({value, onChange}) => {
+const DatePicker = ({value, onChange, label}) => {
     return (
         <LocalizationProvider dateAdapter={DateAdapter}>
             <Stack spacing={3}>
                 <DesktopDatePicker
-                    label="Birthday"
+                    label={label}
                     value={value}
                     onChange={onChange}
                     renderInput={(params) => <TextField {...params} />}

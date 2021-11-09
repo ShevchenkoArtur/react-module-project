@@ -7,6 +7,7 @@ import ThirdStep from '../components/pages/Signup/ThirdStep/ThirdStep';
 import SelectedMovie from '../components/pages/SelectedMovie/SelectedMovie';
 import FavoriteMovies from '../components/pages/FavoriteMovies/FavoriteMovies';
 import AccountConnect from '../components/pages/Login/AccountConnect/AccountConnect';
+import Profile from '../components/pages/Profile/Profile';
 
 export const routes = [
     {path: '/', component: Login, private: false},
@@ -18,4 +19,5 @@ export const routes = [
     {path: '/movies', component: Movies, private: true},
     {path: '/movie/:id', component: SelectedMovie, private: true},
     {path: '/favorite', component: FavoriteMovies, private: true},
+    {path: '/profile', component: Profile, private: true},
 ]

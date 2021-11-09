@@ -16,6 +16,7 @@ import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Logout from '@mui/icons-material/Logout';
+import {baseImgUrl} from '../../api/api';
 
 function HideOnScroll(props) {
     const {children} = props
@@ -30,7 +31,7 @@ function HideOnScroll(props) {
 
 export default function HideAppBar(props) {
     const history = useHistory()
-    const {sessionId} = useSelector(state => state.users)
+    const {sessionId, userAccount} = useSelector(state => state.users)
     const {isLightMode} = useSelector(state => state.theme)
     const dispatch = useDispatch()
 
@@ -47,18 +48,28 @@ export default function HideAppBar(props) {
                     <Toolbar>
                         <MoviesMenu/>
                         <ThemeSwitch checked={!isLightMode} onClick={() => dispatch(toggleTheme())}/>
-                        <AccountMenu>
-                            <MenuItem>
-                                <Avatar/> Profile
-                            </MenuItem>
-                            <Divider/>
-                            <MenuItem onClick={onLogout}>
-                                <ListItemIcon>
-                                    <Logout fontSize="small"/>
-                                </ListItemIcon>
-                                Logout
-                            </MenuItem>
-                        </AccountMenu>
+                        {
+                            (sessionId || localStorage.getItem('session_id')) && <AccountMenu>
+                                <MenuItem onClick={() => history.push('/profile')}>
+                                    <Avatar>
+                                        <img
+                                            width='32'
+                                            height='32'
+                                            src={`${baseImgUrl}/${userAccount && userAccount?.avatar.tmdb.avatar_path}`}
+                                            alt='avatar'
+                                        />
+                                    </Avatar> Profile
+                                </MenuItem>
+                                <Divider/>
+                                <MenuItem onClick={onLogout}>
+                                    <ListItemIcon>
+                                        <Logout fontSize="small"/>
+                                    </ListItemIcon>
+                                    Logout
+                                </MenuItem>
+                            </AccountMenu>
+                        }
+
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>

@@ -60,6 +60,7 @@ const SecondStep = () => {
                         <DatePicker
                             value={registerInputValues.birthday}
                             onChange={(newValue) => dispatch(updateRegisterUserData('birthday', newValue))}
+                            label='Birthday'
                         />
                     </Box>
 

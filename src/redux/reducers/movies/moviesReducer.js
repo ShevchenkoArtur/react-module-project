@@ -4,6 +4,7 @@ const initialState = {
     movies: [],
     favoriteMovies: [],
     genres: [],
+    languages: [],
     moviesAccountStates: [],
     selectedMovie: {},
     isLoading: false,
@@ -12,6 +13,12 @@ const initialState = {
         totalPages: 0
     },
     searchInputValue: '',
+    searchLanguage: '',
+    searchReleaseDates: {
+        startDate: null,
+        endDate: null
+    },
+    selectSortValue: ''
 }
 
 const moviesReducer = (state = initialState, action) => {
@@ -35,6 +42,29 @@ const moviesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 genres: action.payload.genres
+            }
+        case moviesActions.GET_LANGUAGES:
+            return {
+                ...state,
+                languages: action.payload.languages
+            }
+        case moviesActions.UPDATE_SEARCH_LANGUAGE:
+            return {
+                ...state,
+                searchLanguage: action.payload.newValue
+            }
+        case moviesActions.UPDATE_RELEASE_DATE:
+            return {
+                ...state,
+                searchReleaseDates: {
+                    ...state.searchReleaseDates,
+                    [action.payload.inputName]: action.payload.newValue
+                }
+            }
+        case moviesActions.UPDATE_SELECT_SORT_VALUE:
+            return {
+                ...state,
+                selectSortValue: action.payload.newValue
             }
         case moviesActions.TOGGLE_LOADER:
             return {
