@@ -116,6 +116,11 @@ const moviesReducer = (state = initialState, action) => {
                     return el
                 })
             }
+        case moviesActions.SORT_MOVIE_BY:
+            return {
+                ...state,
+                movies: action.payload.movies
+            }
         default:
             return state
     }

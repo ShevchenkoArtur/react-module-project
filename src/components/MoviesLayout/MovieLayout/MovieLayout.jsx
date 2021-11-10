@@ -26,11 +26,11 @@ const MovieLayout = ({movie}) => {
         history.push(`/movie/${movie.id}`)
     }
 
-    useEffect(() => {
-        if (!moviesAccountStates.find(el => el.id === movie.id)?.id && sessionId) {
-            dispatch(getMovieAccountStateAsync(sessionId, movie.id))
-        }
-    }, [dispatch, moviesAccountStates, movie.id, sessionId])
+    // useEffect(() => {
+    //     if (!moviesAccountStates.find(el => el.id === movie.id)?.id && sessionId) {
+    //         dispatch(getMovieAccountStateAsync(sessionId, movie.id))
+    //     }
+    // }, [dispatch, moviesAccountStates, movie.id, sessionId])
 
     const markAsFavorite = () => {
         const data = {

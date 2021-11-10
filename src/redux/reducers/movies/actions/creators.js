@@ -7,6 +7,7 @@ export const getGenres = (genres) => ({type: moviesActions.GET_GENRES, payload: 
 export const getLanguages = (languages) => ({type: moviesActions.GET_LANGUAGES, payload: {languages}})
 export const updateSearchLanguage = (newValue) => ({type: moviesActions.UPDATE_SEARCH_LANGUAGE, payload: {newValue}})
 export const updateSelectSortValue = (newValue) => ({type: moviesActions.UPDATE_SELECT_SORT_VALUE, payload: {newValue}})
+export const sortMovieBy = (movies) => ({type: moviesActions.SORT_MOVIE_BY, payload: {movies}})
 export const searchFilm = (movies) => ({type: moviesActions.SEARCH_FILM, payload: {movies}})
 export const toggleLoader = () => ({type: moviesActions.TOGGLE_LOADER})
 export const updatePagination = (totalPages, page) => ({

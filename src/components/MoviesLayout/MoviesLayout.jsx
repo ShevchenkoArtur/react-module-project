@@ -7,9 +7,10 @@ import PaginationSize from '../UI/PaginationSize/PaginationSize';
 import {useDispatch, useSelector} from 'react-redux';
 import getMoviesAsync from '../../redux/reducers/movies/thunks/getMoviesAsync';
 import MovieLayout from './MovieLayout/MovieLayout';
+import discoverMovieAsync from '../../redux/reducers/movies/thunks/discoverMovieAsync';
 
 const MoviesLayout = ({moviesArr}) => {
-    const {pagination, isLoading} = useSelector(state => state.movies)
+    const {pagination, isLoading, selectSortValue} = useSelector(state => state.movies)
     const dispatch = useDispatch()
 
     const renderMovies = (moviesArr) => {
@@ -23,8 +24,9 @@ const MoviesLayout = ({moviesArr}) => {
         )
     }
 
-    const onChangePage = (event, value) => {
-        dispatch(getMoviesAsync(value))
+    const onChangePage = (event, page) => {
+        // dispatch(getMoviesAsync(value))
+        dispatch(discoverMovieAsync(selectSortValue, page))
     }
 
     return (

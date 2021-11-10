@@ -53,3 +53,7 @@ export async function getGenresList() {
 export async function getLanguagesList() {
     return await apiInstance.get('/configuration/languages')
 }
+
+export async function discoverMovie(discoverQuery, page) {
+    return await apiInstance.get(`/discover/movie?${discoverQuery}&page=${page}`)
+}

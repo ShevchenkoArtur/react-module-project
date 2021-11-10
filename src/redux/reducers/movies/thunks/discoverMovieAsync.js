@@ -1,10 +1,10 @@
-import {fetchMovies} from "../../../../api/routes/movies";
-import {getMovies, toggleLoader, updatePagination} from "../actions/creators";
+import {discoverMovie} from '../../../../api/routes/movies';
+import {getMovies, sortMovieBy, toggleLoader, updatePagination} from '../actions/creators';
 
-const getMoviesAsync = (page) => {
+const discoverMovieAsync = (discoverQuery, page) => {
     return (dispatch) => {
         dispatch(toggleLoader())
-        fetchMovies(page)
+        discoverMovie(discoverQuery, page)
             .then(response => {
                 dispatch(updatePagination(response.data.total_pages, response.data.page))
                 dispatch(getMovies(response.data.results))
@@ -16,4 +16,4 @@ const getMoviesAsync = (page) => {
     }
 }
 
-export default getMoviesAsync;
+export default discoverMovieAsync;
