@@ -5,12 +5,12 @@ import Box from '@mui/material/Box';
 import AccordionBar from '../AccordionBar/AccordionBar';
 import PaginationSize from '../UI/PaginationSize/PaginationSize';
 import {useDispatch, useSelector} from 'react-redux';
-import getMoviesAsync from '../../redux/reducers/movies/thunks/getMoviesAsync';
 import MovieLayout from './MovieLayout/MovieLayout';
 import discoverMovieAsync from '../../redux/reducers/movies/thunks/discoverMovieAsync';
+import style from './MoviesLayout.module.css'
 
 const MoviesLayout = ({moviesArr}) => {
-    const {pagination, isLoading, selectSortValue} = useSelector(state => state.movies)
+    const {pagination, isLoading, selectSortValue, genresId} = useSelector(state => state.movies)
     const dispatch = useDispatch()
 
     const renderMovies = (moviesArr) => {
@@ -25,8 +25,19 @@ const MoviesLayout = ({moviesArr}) => {
     }
 
     const onChangePage = (event, page) => {
-        // dispatch(getMoviesAsync(value))
-        dispatch(discoverMovieAsync(selectSortValue, page))
+        if (selectSortValue && genresId.join()) {
+            console.log('1')
+            dispatch(discoverMovieAsync(`${selectSortValue}&with_genres=${genresId.join()}`, page))
+        } else if (selectSortValue && !genresId.join()) {
+            console.log('2')
+            dispatch(discoverMovieAsync(selectSortValue, page))
+        } else if (!selectSortValue && genresId.join()) {
+            console.log('3')
+            dispatch(discoverMovieAsync(`with_genres=${genresId.join()}`, page))
+        } else if (!selectSortValue && !genresId.join()) {
+            console.log('4')
+            dispatch(discoverMovieAsync('', page))
+        }
     }
 
     return (
@@ -36,22 +47,22 @@ const MoviesLayout = ({moviesArr}) => {
                     ?
                     <Loader/>
                     :
-                    <>
-                        <Container style={{display: 'flex', marginTop: '30px'}}>
-                            <Box mr={3}>
+                    <Container>
+                        <Box className={style.contentBox}>
+                            <Box className={style.accordionBox}>
                                 <AccordionBar/>
                             </Box>
-                            <Box style={{display: 'flex', flexWrap: 'wrap', margin: '-16px -8px 0 -8px'}}>
+                            <Box  className={style.moviesBox}>
                                 {
                                     renderMovies(moviesArr)
                                 }
                             </Box>
-                        </Container>
+                        </Box>
                         <Box style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} mt={5}>
                             <PaginationSize count={pagination.totalPages} page={pagination.page}
                                             handleChange={onChangePage}/>
                         </Box>
-                    </>
+                    </Container>
             }
         </>
     )

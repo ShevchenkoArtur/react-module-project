@@ -55,5 +55,5 @@ export async function getLanguagesList() {
 }
 
 export async function discoverMovie(discoverQuery, page) {
-    return await apiInstance.get(`/discover/movie?${discoverQuery}&page=${page}`)
+    return await apiInstance.get(`/discover/movie?page=${page}&${discoverQuery}`)
 }

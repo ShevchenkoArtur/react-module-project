@@ -16,6 +16,12 @@ const SelectedMovie = () => {
         background: `no-repeat center/cover grey url(${baseImgUrl}${selectedMovie?.backdrop_path})`
     }
 
+    const renderGenres = () => {
+        if(selectedMovie.genres){
+           return selectedMovie.genres.map(el => <Typography key={el.id}>{el.name}</Typography>)
+        }
+    }
+
     useEffect(() => {
         dispatch(getMovieAsync(id))
     }, [dispatch, id])
@@ -32,6 +38,8 @@ const SelectedMovie = () => {
                             <Typography variant='h3'>{selectedMovie?.original_title}</Typography>
                             <Typography fontWeight='bold'>Overview</Typography>
                             <Typography>{selectedMovie?.overview}</Typography>
+                            <Box>GENRES:{renderGenres()}</Box>
+                            <Typography>LANGUAGE: {selectedMovie.original_language}</Typography>
                         </Box>
                     </Box>
                 </Box>

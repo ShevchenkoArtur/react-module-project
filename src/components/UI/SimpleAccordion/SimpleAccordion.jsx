@@ -7,7 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const SimpleAccordion = ({children, title}) => {
     return (
-        <Accordion style={{width: '250px'}}>
+        <Accordion style={{width: '100%'}}>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon/>}
                 aria-controls="panel1a-content"

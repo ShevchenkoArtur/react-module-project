@@ -7,9 +7,9 @@ const deleteSessionAsync = (sessionId) => {
         dispatch(toggleLoader())
         deleteSession(sessionId)
             .then(res => {
-                dispatch(toggleLoader())
                 localStorage.setItem('session_id', '')
                 dispatch(logout())
+                dispatch(toggleLoader())
             })
     }
 }

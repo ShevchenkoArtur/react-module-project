@@ -22,10 +22,10 @@ const AccordionSort = () => {
                 value={selectSortValue}
                 handleClick={(newValue) => handleClick(newValue)}
             >
-                <MenuItem value='sort_by=popularity.asc'>Popularity Ascending</MenuItem>
-                <MenuItem value='sort_by=popularity.desc'>Popularity Descending</MenuItem>
-                <MenuItem value='sort_by=release_date.asc'>Release Date Ascending</MenuItem>
-                <MenuItem value='sort_by=release_date.desc'>Release Date Descending</MenuItem>
+                <MenuItem value='popularity.asc'>Popularity Ascending</MenuItem>
+                <MenuItem value='popularity.desc'>Popularity Descending</MenuItem>
+                <MenuItem value='release_date.asc'>Release Date Ascending</MenuItem>
+                <MenuItem value='release_date.desc'>Release Date Descending</MenuItem>
             </BasicSelect>
         </SimpleAccordion>
     )
