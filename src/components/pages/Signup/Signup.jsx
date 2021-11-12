@@ -14,7 +14,8 @@ const Signup = () => {
     const dispatch = useDispatch()
 
     const {register, formState: {errors}, handleSubmit, setValue} = useForm({
-        resolver: yupResolver(signupValidation())
+        resolver: yupResolver(signupValidation()),
+        mode: 'all'
     })
 
     const formStyles = {

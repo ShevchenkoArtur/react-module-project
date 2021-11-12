@@ -5,14 +5,18 @@ import Header from './components/Header/Header';
 import {Provider} from 'react-redux';
 import store from './redux/store/store';
 import Theme from './components/UI/Theme/Theme';
+import DateAdapter from '@mui/lab/AdapterMoment';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 const App = () => {
     return (
         <BrowserRouter>
             <Provider store={store}>
                 <Theme>
-                    <Header/>
-                    <Routes/>
+                    <LocalizationProvider dateAdapter={DateAdapter}>
+                        <Header/>
+                        <Routes/>
+                    </LocalizationProvider>
                 </Theme>
             </Provider>
         </BrowserRouter>

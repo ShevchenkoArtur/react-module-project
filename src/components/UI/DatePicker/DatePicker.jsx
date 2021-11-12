@@ -1,22 +1,26 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import DateAdapter from '@mui/lab/AdapterMoment';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 
-const DatePicker = ({value, onChange, label}) => {
+const DatePicker = ({value, onChange, label, disabledFuture, errors}) => {
     return (
-        <LocalizationProvider dateAdapter={DateAdapter}>
-            <Stack spacing={3}>
-                <DesktopDatePicker
-                    label={label}
-                    value={value}
-                    onChange={onChange}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-            </Stack>
-        </LocalizationProvider>
+        <Stack spacing={3}>
+            <DesktopDatePicker
+                disableFuture={disabledFuture}
+                label={label}
+                value={value}
+                onChange={onChange}
+                renderInput={
+                    (params) =>
+                        <TextField
+                            {...params}
+                            error={!!errors.birthday}
+                            helperText={errors?.birthday?.message && 'Birthday is required'}
+                        />
+                }
+            />
+        </Stack>
     )
 }
 

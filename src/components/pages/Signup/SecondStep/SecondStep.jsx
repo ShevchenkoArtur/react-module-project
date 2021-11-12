@@ -16,7 +16,8 @@ const SecondStep = () => {
     const history = useHistory()
 
     const {register, formState: {errors}, handleSubmit, setValue} = useForm({
-        resolver: yupResolver(secondStepValidation())
+        resolver: yupResolver(secondStepValidation()),
+        mode: 'all'
     })
 
     const formStyles = {
@@ -55,19 +56,21 @@ const SecondStep = () => {
                             fullWidth
                         />
                     </Box>
-
                     <Box mt={3}>
                         <DatePicker
+                            errors={errors}
+                            disabledFuture={true}
                             value={registerInputValues.birthday}
                             onChange={(newValue) => dispatch(updateRegisterUserData('birthday', newValue))}
                             label='Birthday'
                         />
                     </Box>
-
                     <Box mt={3}>
                         <FormControl fullWidth>
                             <InputLabel id="gender-label">Gender</InputLabel>
                             <Select
+                                {...register('gender')}
+                                error={!!errors.gender}
                                 labelId="gender-label"
                                 value={registerInputValues.gender}
                                 onChange={(e) => dispatch(updateRegisterUserData('gender', e.target.value))}
@@ -76,9 +79,16 @@ const SecondStep = () => {
                                 <MenuItem value='Male'>Male</MenuItem>
                                 <MenuItem value='Female'>Female</MenuItem>
                             </Select>
+                            <Typography
+                                variant="inherit"
+                                color="#d42b2b"
+                                fontSize='0.75rem'
+                                style={{marginTop: '3px', marginLeft: '14px'}}
+                            >
+                                {errors?.gender?.message}
+                            </Typography>
                         </FormControl>
                     </Box>
-
                     <Box mt={3}>
                         <Button fullWidth variant='contained' type='submit'>Next Step</Button>
                     </Box>

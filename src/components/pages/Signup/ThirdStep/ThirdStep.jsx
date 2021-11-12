@@ -14,7 +14,8 @@ const ThirdStep = () => {
     const history = useHistory()
 
     const {register, formState: {errors}, handleSubmit} = useForm({
-        resolver: yupResolver(thirdStepValidation())
+        resolver: yupResolver(thirdStepValidation()),
+        mode: 'all'
     })
 
     const formStyles = {
