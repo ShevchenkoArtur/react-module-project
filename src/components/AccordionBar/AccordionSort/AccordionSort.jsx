@@ -1,10 +1,11 @@
 import React from 'react';
 import SimpleAccordion from '../../UI/SimpleAccordion/SimpleAccordion';
-import BasicSelect from '../../UI/BasicSelect/BasicSelect';
 import MenuItem from '@mui/material/MenuItem';
 import {useDispatch, useSelector} from 'react-redux';
 import {updateSelectSortValue} from '../../../redux/reducers/movies/actions/creators';
 import discoverMovieAsync from '../../../redux/reducers/movies/thunks/discoverMovieAsync';
+import {InputLabel, Select} from '@mui/material';
+import FormControl from '@mui/material/FormControl';
 
 const AccordionSort = () => {
     const {selectSortValue, pagination} = useSelector(state => state.movies)
@@ -17,16 +18,20 @@ const AccordionSort = () => {
 
     return (
         <SimpleAccordion title='Sort'>
-            <BasicSelect
-                label='Sort Results By'
-                value={selectSortValue}
-                handleClick={(newValue) => handleClick(newValue)}
-            >
-                <MenuItem value='popularity.asc'>Popularity Ascending</MenuItem>
-                <MenuItem value='popularity.desc'>Popularity Descending</MenuItem>
-                <MenuItem value='release_date.asc'>Release Date Ascending</MenuItem>
-                <MenuItem value='release_date.desc'>Release Date Descending</MenuItem>
-            </BasicSelect>
+            <FormControl fullWidth>
+                <InputLabel id="sort-label">Sort Results By</InputLabel>
+                <Select
+                    labelId='sort-label'
+                    label='Sort Results By'
+                    value={selectSortValue}
+                    onChange={(e) => handleClick(e.target.value)}
+                >
+                    <MenuItem value='popularity.asc'>Popularity Ascending</MenuItem>
+                    <MenuItem value='popularity.desc'>Popularity Descending</MenuItem>
+                    <MenuItem value='release_date.asc'>Release Date Ascending</MenuItem>
+                    <MenuItem value='release_date.desc'>Release Date Descending</MenuItem>
+                </Select>
+            </FormControl>
         </SimpleAccordion>
     )
 }

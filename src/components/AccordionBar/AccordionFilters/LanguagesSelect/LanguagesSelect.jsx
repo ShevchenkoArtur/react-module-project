@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
-import BasicSelect from '../../../UI/BasicSelect/BasicSelect';
 import {updateSearchLanguage} from '../../../../redux/reducers/movies/actions/creators';
 import MenuItem from '@mui/material/MenuItem';
 import getLanguagesAsync from '../../../../redux/reducers/movies/thunks/getLanguagesAsync';
 import {useDispatch, useSelector} from 'react-redux';
+import {Divider, InputLabel, Select, Typography} from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import Box from '@mui/material/Box';
 
 const LanguagesSelect = () => {
-
     const {languages, searchLanguage} = useSelector(state => state.movies)
     const dispatch = useDispatch()
 
@@ -23,13 +24,21 @@ const LanguagesSelect = () => {
     }
 
     return (
-        <BasicSelect
-            label='Language'
-            value={searchLanguage}
-            handleClick={(e) => dispatch(updateSearchLanguage(e))}
-        >
-            {renderLanguages()}
-        </BasicSelect>
+        <Box mt={3} mb={3}>
+            <Divider/>
+            <Typography mt={1} mb={2} fontWeight='bold' variant='body2'>Language</Typography>
+            <FormControl fullWidth>
+                <InputLabel id="language-label">Language</InputLabel>
+                <Select
+                    label='Language'
+                    value={searchLanguage}
+                    onChange={(e) => dispatch(updateSearchLanguage(e.target.value))}
+                    labelId="language-label"
+                >
+                    {renderLanguages()}
+                </Select>
+            </FormControl>
+        </Box>
     )
 }
 

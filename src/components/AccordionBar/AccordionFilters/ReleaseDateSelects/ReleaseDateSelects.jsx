@@ -1,9 +1,9 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import {Typography} from '@mui/material';
-import DatePicker from '../../../UI/DatePicker/DatePicker';
+import {Divider, TextField, Typography} from '@mui/material';
 import {updateReleaseDate} from '../../../../redux/reducers/movies/actions/creators';
 import {useDispatch, useSelector} from 'react-redux';
+import {DesktopDatePicker} from '@mui/lab';
 
 const ReleaseDateSelects = () => {
     const dispatch = useDispatch()
@@ -11,16 +11,19 @@ const ReleaseDateSelects = () => {
 
     return (
         <Box>
-            <Typography>Release Dates</Typography>
-            <DatePicker
+            <Divider/>
+            <Typography mt={1} mb={2} fontWeight='bold' variant='body2'>Release Dates</Typography>
+            <DesktopDatePicker
                 label='From'
-                value={searchReleaseDates.startDate}
                 onChange={(newValue) => dispatch(updateReleaseDate('startDate', newValue))}
+                value={searchReleaseDates.startDate}
+                renderInput={(params) => <TextField {...params} fullWidth/>}
             />
-            <DatePicker
-                value={searchReleaseDates.endDate}
+            <DesktopDatePicker
                 label='To'
                 onChange={(newValue) => dispatch(updateReleaseDate('endDate', newValue))}
+                value={searchReleaseDates.endDate}
+                renderInput={(params) => <TextField {...params} margin='normal' fullWidth/>}
             />
         </Box>
     )

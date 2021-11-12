@@ -14,10 +14,14 @@
 }
 
 @media (min-width: 480px) {
-    .moviesBox {
+    .contentBox {
         display: flex;
-        flex-wrap: wrap;
-        margin: 0 -8px -16px -8px;
+    }
+
+    .accordionBox {
+        padding-right: 30px;
+        margin-bottom: 0;
+        flex-basis: 30%;
     }
 
     .paginationBox {
@@ -26,8 +30,10 @@
 }
 
 @media (min-width: 780px) {
-    .contentBox {
+    .moviesBox {
         display: flex;
+        flex-wrap: wrap;
+        margin: 0 -8px -16px -8px;
     }
 
     .accordionBox {

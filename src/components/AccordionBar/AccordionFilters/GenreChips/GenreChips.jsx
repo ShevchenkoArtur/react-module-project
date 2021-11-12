@@ -4,7 +4,7 @@ import ChipBtn from '../../../UI/ChipBtn/ChipBtn';
 import {updateGenresId} from '../../../../redux/reducers/movies/actions/creators';
 import getGenresAsync from '../../../../redux/reducers/movies/thunks/getGenresAsync';
 import {useDispatch, useSelector} from 'react-redux';
-import {Typography} from '@mui/material';
+import {Divider, Typography} from '@mui/material';
 
 const GenreChips = () => {
 
@@ -36,7 +36,8 @@ const GenreChips = () => {
 
     return (
         <>
-            <Typography>Genres</Typography>
+            <Divider />
+            <Typography mt={1} fontWeight='bold' variant='body2'>Genres</Typography>
             <Box style={{display: 'flex', flexWrap: 'wrap'}}>
                 {renderGenresChips()}
             </Box>

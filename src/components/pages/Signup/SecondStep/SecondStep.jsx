@@ -5,10 +5,10 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {useHistory} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import secondStepValidation from '../../../../validationSchemes/secondStepValidation';
-import DatePicker from '../../../UI/DatePicker/DatePicker';
 import {useDispatch, useSelector} from 'react-redux';
 import {updateRegisterUserData} from '../../../../redux/reducers/users/actions/creators';
 import FormControl from '@mui/material/FormControl';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 
 const SecondStep = () => {
     const {registerInputValues} = useSelector(state => state.users)
@@ -57,12 +57,20 @@ const SecondStep = () => {
                         />
                     </Box>
                     <Box mt={3}>
-                        <DatePicker
-                            errors={errors}
-                            disabledFuture={true}
+                        <DesktopDatePicker
+                            disableFuture={true}
+                            label='Birthday'
                             value={registerInputValues.birthday}
                             onChange={(newValue) => dispatch(updateRegisterUserData('birthday', newValue))}
-                            label='Birthday'
+                            renderInput={
+                                (params) =>
+                                    <TextField
+                                        {...params}
+                                        fullWidth
+                                        error={!!errors.birthday}
+                                        helperText={errors?.birthday?.message && 'Birthday is required'}
+                                    />
+                            }
                         />
                     </Box>
                     <Box mt={3}>
