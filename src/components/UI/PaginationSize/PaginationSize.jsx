@@ -3,9 +3,14 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 const PaginationSize = ({count, page, handleChange}) => {
+    const getPaginationSize = () => {
+        const pageWidth = document.documentElement.scrollWidth
+        return pageWidth >= 480 ? 'large' : 'small'
+    }
+
     return (
-        <Stack spacing={2}>
-            <Pagination count={count} page={page} onChange={handleChange} size="large" />
+        <Stack>
+            <Pagination count={count} page={page} onChange={handleChange} size={getPaginationSize()}/>
         </Stack>
     )
 }

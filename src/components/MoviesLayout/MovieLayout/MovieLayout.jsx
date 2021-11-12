@@ -6,14 +6,14 @@ import Typography from '@mui/material/Typography';
 import {CardActionArea} from '@mui/material';
 import {useHistory} from 'react-router-dom';
 import Box from '@mui/material/Box';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {pink} from '@mui/material/colors';
 import {baseImgUrl} from '../../../api/api';
-import getMovieAccountStateAsync from '../../../redux/reducers/movies/thunks/getMovieAccountStateAsync';
 import markAsFavoriteAsync from '../../../redux/reducers/movies/thunks/markAsFavoriteAsync';
+import style from './MovieLayout.module.css'
 
 const MovieLayout = ({movie}) => {
     const history = useHistory()
@@ -73,13 +73,13 @@ const MovieLayout = ({movie}) => {
     }
 
     return (
-        <Box style={{flexBasis: '18%', margin: '16px 8px 0 8px'}}>
+        <Box className={style.cardBox}>
             <Card
-                style={{display: 'flex', height: '100%'}}
+                className={style.card}
                 onMouseEnter={() => setImgHover(true)}
                 onMouseLeave={() => setImgHover(false)}
             >
-                <CardActionArea style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between',}}>
+                <CardActionArea style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
                     <Box>
                         <CardMedia
                             style={{position: 'relative'}}
@@ -92,11 +92,13 @@ const MovieLayout = ({movie}) => {
                             renderFavoriteIcon()
                         }
                     </Box>
-                    <CardContent>
-                        <Typography gutterBottom>
+                    <CardContent style={{flexGrow: 1}}>
+                        <Typography fontWeight='bold'>
                             {movie?.title}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                    </CardContent>
+                    <CardContent>
+                        <Typography variant="body2" color="text.secondary" >
                             {movie?.release_date}
                         </Typography>
                     </CardContent>

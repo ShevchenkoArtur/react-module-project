@@ -58,7 +58,7 @@ const MoviesLayout = ({moviesArr}) => {
                                 }
                             </Box>
                         </Box>
-                        <Box style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} mt={5}>
+                        <Box className={style.paginationBox}>
                             <PaginationSize count={pagination.totalPages} page={pagination.page}
                                             handleChange={onChangePage}/>
                         </Box>
