@@ -22,9 +22,10 @@ export async function fetchFavoriteMovies(accountId, session_id, page) {
     })
 }
 
-export async function searchMovie(query) {
+export async function searchMovie(query, page) {
     return await apiInstance.get('/search/movie', {
         params: {
+            page,
             query
         }
     })

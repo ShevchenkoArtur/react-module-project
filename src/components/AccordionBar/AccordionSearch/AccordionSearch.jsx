@@ -24,7 +24,7 @@ const AccordionSearch = () => {
     }
 
     const onSearchMovie = () => {
-        dispatch(searchMovieAsync(searchInputValue))
+        dispatch(searchMovieAsync(searchInputValue, pagination.page))
     }
 
     return (

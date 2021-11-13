@@ -3,16 +3,14 @@ import {Container, Typography} from '@mui/material';
 import Loader from '../UI/Loader/Loader';
 import Box from '@mui/material/Box';
 import AccordionBar from '../AccordionBar/AccordionBar';
-import PaginationSize from '../UI/PaginationSize/PaginationSize';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import MovieLayout from './MovieLayout/MovieLayout';
-import discoverMovieAsync from '../../redux/reducers/movies/thunks/discoverMovieAsync';
 import style from './MoviesLayout.module.css'
 import SimpleSnackbar from '../UI/SimpleSnackbar/SimpleSnackbar';
+import MoviesPagination from './MoviesPagination/MoviesPagination';
 
 const MoviesLayout = ({moviesArr}) => {
-    const {pagination, isLoading, selectSortValue, genresId} = useSelector(state => state.movies)
-    const dispatch = useDispatch()
+    const {isLoading} = useSelector(state => state.movies)
     const [open, setOpen] = useState(false)
     const [message, setMessage] = useState('')
 
@@ -22,25 +20,10 @@ const MoviesLayout = ({moviesArr}) => {
                 ?
                 moviesArr.map(el => <MovieLayout key={el.id} movie={el} setMessage={setMessage} setOpen={setOpen}/>)
                 :
-                <Typography ml={3} mt={3} variant='h6' fontWeight='bold'>There are no movies that matched your
-                    query.</Typography>
+                <Typography ml={3} mt={3} variant='h6' fontWeight='bold'>
+                    There are no movies that matched your query.
+                </Typography>
         )
-    }
-
-    const onChangePage = (event, page) => {
-        if (selectSortValue && genresId.join()) {
-            console.log('1')
-            dispatch(discoverMovieAsync(`${selectSortValue}&with_genres=${genresId.join()}`, page))
-        } else if (selectSortValue && !genresId.join()) {
-            console.log('2')
-            dispatch(discoverMovieAsync(selectSortValue, page))
-        } else if (!selectSortValue && genresId.join()) {
-            console.log('3')
-            dispatch(discoverMovieAsync(`with_genres=${genresId.join()}`, page))
-        } else if (!selectSortValue && !genresId.join()) {
-            console.log('4')
-            dispatch(discoverMovieAsync('', page))
-        }
     }
 
     return (
@@ -62,10 +45,7 @@ const MoviesLayout = ({moviesArr}) => {
                                 }
                             </Box>
                         </Box>
-                        <Box className={style.paginationBox}>
-                            <PaginationSize count={pagination.totalPages} page={pagination.page}
-                                            handleChange={onChangePage}/>
-                        </Box>
+                        <MoviesPagination/>
                     </Container>
             }
         </>

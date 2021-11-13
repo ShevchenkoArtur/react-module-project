@@ -12,7 +12,6 @@ const AccordionSort = () => {
     const dispatch = useDispatch()
 
     const handleClick = (sortValue) => {
-        console.log(sortValue)
         dispatch(updateSelectSortValue(sortValue))
         dispatch(discoverMovieAsync(sortValue, pagination.page))
     }
