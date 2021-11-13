@@ -1,5 +1,5 @@
 import {getGenresList} from "../../../../api/routes/movies";
-import {getGenres} from "../actions/creators";
+import {getGenres} from '../actions/creators';
 
 const getGenresAsync = () => {
     return (dispatch) => {

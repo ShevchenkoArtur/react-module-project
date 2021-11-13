@@ -3,7 +3,6 @@ import moviesActions from "./actions/constants";
 const initialState = {
     movies: [],
     favoriteMovies: [],
-    genres: [],
     languages: [],
     moviesAccountStates: [],
     selectedMovie: {},
@@ -19,7 +18,6 @@ const initialState = {
         endDate: null
     },
     selectSortValue: '',
-    genresId: [],
 }
 
 const moviesReducer = (state = initialState, action) => {
@@ -38,16 +36,6 @@ const moviesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedMovie: action.payload.movie
-            }
-        case moviesActions.GET_GENRES:
-            return {
-                ...state,
-                genres: action.payload.genres.map(el => {
-                    return {
-                        ...el,
-                        isClicked: false
-                    }
-                })
             }
         case moviesActions.GET_LANGUAGES:
             return {
@@ -126,36 +114,6 @@ const moviesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 movies: action.payload.movies
-            }
-        case moviesActions.UPDATE_GENRES_ID:
-            if (action.payload.bool) {
-                return {
-                    ...state,
-                    genres: state.genres.map(el => {
-                        if(el.id === action.payload.genreId) {
-                            return {
-                                ...el,
-                                isClicked: false
-                            }
-                        }
-                        return el
-                    }),
-                    genresId: state.genresId.filter(el => el !== action.payload.genreId)
-                }
-            } else {
-                return {
-                    ...state,
-                    genres: state.genres.map(el => {
-                        if(el.id === action.payload.genreId) {
-                            return {
-                                ...el,
-                                isClicked: true
-                            }
-                        }
-                        return el
-                    }),
-                    genresId: [...state.genresId, action.payload.genreId]
-                }
             }
         default:
             return state

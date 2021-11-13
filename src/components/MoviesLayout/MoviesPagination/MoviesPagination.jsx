@@ -12,11 +12,12 @@ const MoviesPagination = () => {
 
     const {
         pagination,
-        genresId,
         searchInputValue,
         searchReleaseDates,
         searchLanguage
     } = useSelector(state => state.movies)
+
+    const {genresId} = useSelector(state => state.genres)
 
     const findWithFilters = (page) => {
         const startDate = formatDate(searchReleaseDates.startDate)

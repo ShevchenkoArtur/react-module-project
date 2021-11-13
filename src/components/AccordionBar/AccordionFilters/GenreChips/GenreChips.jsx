@@ -1,14 +1,13 @@
 import React, {useEffect} from 'react';
 import Box from '@mui/material/Box';
 import ChipBtn from '../../../UI/ChipBtn/ChipBtn';
-import {updateGenresId} from '../../../../redux/reducers/movies/actions/creators';
-import getGenresAsync from '../../../../redux/reducers/movies/thunks/getGenresAsync';
 import {useDispatch, useSelector} from 'react-redux';
 import {Divider, Typography} from '@mui/material';
+import getGenresAsync from '../../../../redux/reducers/genres/thunks/getGenresAsync';
+import {updateGenresId} from '../../../../redux/reducers/genres/actions/creators';
 
 const GenreChips = () => {
-
-    const {genres} = useSelector(state => state.movies)
+    const {genres} = useSelector(state => state.genres)
     const dispatch = useDispatch()
 
     useEffect(() => {
