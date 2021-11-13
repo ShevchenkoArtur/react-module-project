@@ -5,6 +5,7 @@ import themeReducer from './theme/themeReducer';
 import genresReducer from './genres/genresReducer';
 import languagesReducer from './languages/languagesReducer';
 import pageReducer from './page/pageReducer';
+import sortAndFilters from './sortAndFilters/sortAndFiltersReducer';
 
 const rootReducer = combineReducers({
     page: pageReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     movies: moviesReducer,
     genres: genresReducer,
     languages: languagesReducer,
-    theme: themeReducer
+    theme: themeReducer,
+    sortAndFilters: sortAndFilters
 })
 
 export default rootReducer;

@@ -5,13 +5,6 @@ const initialState = {
     favoriteMovies: [],
     moviesAccountStates: [],
     selectedMovie: {},
-    searchInputValue: '',
-    searchLanguage: '',
-    searchReleaseDates: {
-        startDate: null,
-        endDate: null
-    },
-    selectSortValue: '',
 }
 
 const moviesReducer = (state = initialState, action) => {
@@ -30,29 +23,6 @@ const moviesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedMovie: action.payload.movie
-            }
-        case moviesActions.UPDATE_SEARCH_LANGUAGE:
-            return {
-                ...state,
-                searchLanguage: action.payload.newValue
-            }
-        case moviesActions.UPDATE_RELEASE_DATE:
-            return {
-                ...state,
-                searchReleaseDates: {
-                    ...state.searchReleaseDates,
-                    [action.payload.inputName]: action.payload.newValue
-                }
-            }
-        case moviesActions.UPDATE_SELECT_SORT_VALUE:
-            return {
-                ...state,
-                selectSortValue: action.payload.newValue
-            }
-        case moviesActions.UPDATE_SEARCH_INPUT_VALUE:
-            return {
-                ...state,
-                searchInputValue: action.payload.newValue
             }
         case moviesActions.SEARCH_FILM:
             return {

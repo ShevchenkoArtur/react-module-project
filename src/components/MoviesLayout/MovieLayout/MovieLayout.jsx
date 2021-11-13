@@ -28,10 +28,12 @@ const MovieLayout = ({movie, setOpen, setMessage}) => {
     }
 
     useEffect(() => {
-        if (!moviesAccountStates.find(el => el.id === movie.id)?.id && sessionId) {
-            dispatch(getMovieAccountStateAsync(sessionId, movie.id))
-        }
-    }, [dispatch, moviesAccountStates, movie.id, sessionId])
+            if (!moviesAccountStates.find(el => el.id === movie.id)?.id && sessionId) {
+                dispatch(getMovieAccountStateAsync(sessionId, movie.id))
+            }
+        },
+        [dispatch, moviesAccountStates, movie.id, sessionId]
+    )
 
     const markAsFavorite = () => {
         const data = {

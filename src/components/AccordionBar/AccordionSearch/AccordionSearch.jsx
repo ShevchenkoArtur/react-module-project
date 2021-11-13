@@ -2,15 +2,15 @@ import React, {useEffect, useState} from 'react';
 import SimpleAccordion from "../../UI/SimpleAccordion/SimpleAccordion";
 import {Button, TextField} from "@mui/material";
 import Box from "@mui/material/Box";
-import {updateSearchInputValue} from "../../../redux/reducers/movies/actions/creators";
 import getMoviesAsync from "../../../redux/reducers/movies/thunks/getMoviesAsync";
 import searchMovieAsync from "../../../redux/reducers/movies/thunks/searchMovieAsync";
 import {useDispatch, useSelector} from "react-redux";
+import {updateSearchInputValue} from '../../../redux/reducers/sortAndFilters/actions/creators';
 
 const AccordionSearch = () => {
     const [findDisabled, setFindDisabled] = useState(true)
     const {pagination} = useSelector(state => state.page)
-    const {searchInputValue} = useSelector(state => state.movies)
+    const {searchInputValue} = useSelector(state => state.sortAndFilters)
     const dispatch = useDispatch()
 
     useEffect(() => {

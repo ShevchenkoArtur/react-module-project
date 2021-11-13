@@ -2,14 +2,14 @@ import React from 'react';
 import SimpleAccordion from '../../UI/SimpleAccordion/SimpleAccordion';
 import MenuItem from '@mui/material/MenuItem';
 import {useDispatch, useSelector} from 'react-redux';
-import {updateSelectSortValue} from '../../../redux/reducers/movies/actions/creators';
 import discoverMovieAsync from '../../../redux/reducers/movies/thunks/discoverMovieAsync';
 import {InputLabel, Select} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
+import {updateSelectSortValue} from '../../../redux/reducers/sortAndFilters/actions/creators';
 
 const AccordionSort = () => {
     const {pagination} = useSelector(state => state.page)
-    const {selectSortValue} = useSelector(state => state.movies)
+    const {selectSortValue} = useSelector(state => state.sortAndFilters)
     const dispatch = useDispatch()
 
     const handleClick = (sortValue) => {

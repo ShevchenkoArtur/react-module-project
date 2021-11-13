@@ -1,13 +1,13 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import {Divider, TextField, Typography} from '@mui/material';
-import {updateReleaseDate} from '../../../../redux/reducers/movies/actions/creators';
 import {useDispatch, useSelector} from 'react-redux';
 import {DesktopDatePicker} from '@mui/lab';
+import {updateReleaseDate} from '../../../../redux/reducers/sortAndFilters/actions/creators';
 
 const ReleaseDateSelects = () => {
     const dispatch = useDispatch()
-    const {searchReleaseDates} = useSelector(state => state.movies)
+    const {searchReleaseDates} = useSelector(state => state.sortAndFilters)
 
     return (
         <Box>

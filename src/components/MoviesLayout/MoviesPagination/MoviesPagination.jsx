@@ -15,7 +15,7 @@ const MoviesPagination = () => {
         searchReleaseDates,
         searchLanguage,
         selectSortValue
-    } = useSelector(state => state.movies)
+    } = useSelector(state => state.sortAndFilters)
 
     const {pagination} = useSelector(state => state.page)
     const {genresId} = useSelector(state => state.genres)
