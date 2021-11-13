@@ -7,6 +7,8 @@ import store from './redux/store/store';
 import Theme from './components/UI/Theme/Theme';
 import DateAdapter from '@mui/lab/AdapterMoment';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import Footer from './components/Footer/Footer';
+import Box from '@mui/material/Box';
 
 const App = () => {
     return (
@@ -14,8 +16,11 @@ const App = () => {
             <Provider store={store}>
                 <Theme>
                     <LocalizationProvider dateAdapter={DateAdapter}>
-                        <Header/>
-                        <Routes/>
+                        <Box className='wrapper'>
+                            <Header/>
+                            <Routes/>
+                            <Footer/>
+                        </Box>
                     </LocalizationProvider>
                 </Theme>
             </Provider>
