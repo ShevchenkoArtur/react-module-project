@@ -3,7 +3,6 @@ import moviesActions from "./actions/constants";
 const initialState = {
     movies: [],
     favoriteMovies: [],
-    languages: [],
     moviesAccountStates: [],
     selectedMovie: {},
     isLoading: false,
@@ -36,11 +35,6 @@ const moviesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedMovie: action.payload.movie
-            }
-        case moviesActions.GET_LANGUAGES:
-            return {
-                ...state,
-                languages: action.payload.languages
             }
         case moviesActions.UPDATE_SEARCH_LANGUAGE:
             return {
@@ -109,11 +103,6 @@ const moviesReducer = (state = initialState, action) => {
                     }
                     return el
                 })
-            }
-        case moviesActions.SORT_MOVIE_BY:
-            return {
-                ...state,
-                movies: action.payload.movies
             }
         default:
             return state

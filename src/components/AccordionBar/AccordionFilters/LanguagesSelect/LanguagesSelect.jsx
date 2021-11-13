@@ -1,14 +1,15 @@
 import React, {useEffect} from 'react';
 import {updateSearchLanguage} from '../../../../redux/reducers/movies/actions/creators';
 import MenuItem from '@mui/material/MenuItem';
-import getLanguagesAsync from '../../../../redux/reducers/movies/thunks/getLanguagesAsync';
+import getLanguagesAsync from '../../../../redux/reducers/languages/thunks/getLanguagesAsync';
 import {useDispatch, useSelector} from 'react-redux';
 import {Divider, InputLabel, Select, Typography} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 
 const LanguagesSelect = () => {
-    const {languages, searchLanguage} = useSelector(state => state.movies)
+    const {languages} = useSelector(state => state.languages)
+    const {searchLanguage} = useSelector(state => state.movies)
     const dispatch = useDispatch()
 
     useEffect(() => {
