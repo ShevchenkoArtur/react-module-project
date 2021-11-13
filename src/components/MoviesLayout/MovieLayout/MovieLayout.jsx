@@ -16,7 +16,7 @@ import markAsFavoriteAsync from '../../../redux/reducers/movies/thunks/markAsFav
 import style from './MovieLayout.module.css'
 import getMovieAccountStateAsync from '../../../redux/reducers/movies/thunks/getMovieAccountStateAsync';
 
-const MovieLayout = ({movie}) => {
+const MovieLayout = ({movie, setOpen, setMessage}) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const {moviesAccountStates} = useSelector(state => state.movies)
@@ -41,7 +41,10 @@ const MovieLayout = ({movie}) => {
         }
 
         dispatch(markAsFavoriteAsync(data, sessionId, userAccount.id, movie))
+        setMessage('Added to your favourite list')
+        setOpen(true)
     }
+
     const unmarkAsFavorite = () => {
         const data = {
             media_type: 'movie',
@@ -50,6 +53,8 @@ const MovieLayout = ({movie}) => {
         }
 
         dispatch(markAsFavoriteAsync(data, sessionId, userAccount.id, movie))
+        setMessage('Removed from your favourite list')
+        setOpen(true)
     }
 
     const renderFavoriteIcon = () => {
@@ -99,7 +104,7 @@ const MovieLayout = ({movie}) => {
                         </Typography>
                     </CardContent>
                     <CardContent>
-                        <Typography variant="body2" color="text.secondary" >
+                        <Typography variant="body2" color="text.secondary">
                             {movie?.release_date}
                         </Typography>
                     </CardContent>

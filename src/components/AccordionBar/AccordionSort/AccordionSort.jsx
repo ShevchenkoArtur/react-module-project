@@ -12,6 +12,7 @@ const AccordionSort = () => {
     const dispatch = useDispatch()
 
     const handleClick = (sortValue) => {
+        console.log(sortValue)
         dispatch(updateSelectSortValue(sortValue))
         dispatch(discoverMovieAsync(sortValue, pagination.page))
     }
@@ -26,10 +27,10 @@ const AccordionSort = () => {
                     value={selectSortValue}
                     onChange={(e) => handleClick(e.target.value)}
                 >
-                    <MenuItem value='popularity.asc'>Popularity Ascending</MenuItem>
-                    <MenuItem value='popularity.desc'>Popularity Descending</MenuItem>
-                    <MenuItem value='release_date.asc'>Release Date Ascending</MenuItem>
-                    <MenuItem value='release_date.desc'>Release Date Descending</MenuItem>
+                    <MenuItem value='sort_by=popularity.asc'>Popularity Ascending</MenuItem>
+                    <MenuItem value='sort_by=popularity.desc'>Popularity Descending</MenuItem>
+                    <MenuItem value='sort_by=release_date.asc'>Release Date Ascending</MenuItem>
+                    <MenuItem value='sort_by=release_date.desc'>Release Date Descending</MenuItem>
                 </Select>
             </FormControl>
         </SimpleAccordion>

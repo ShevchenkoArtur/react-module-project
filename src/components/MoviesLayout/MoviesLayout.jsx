@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Container, Typography} from '@mui/material';
 import Loader from '../UI/Loader/Loader';
 import Box from '@mui/material/Box';
@@ -8,16 +8,19 @@ import {useDispatch, useSelector} from 'react-redux';
 import MovieLayout from './MovieLayout/MovieLayout';
 import discoverMovieAsync from '../../redux/reducers/movies/thunks/discoverMovieAsync';
 import style from './MoviesLayout.module.css'
+import SimpleSnackbar from '../UI/SimpleSnackbar/SimpleSnackbar';
 
 const MoviesLayout = ({moviesArr}) => {
     const {pagination, isLoading, selectSortValue, genresId} = useSelector(state => state.movies)
     const dispatch = useDispatch()
+    const [open, setOpen] = useState(false)
+    const [message, setMessage] = useState('')
 
     const renderMovies = (moviesArr) => {
         return (
             moviesArr.length
                 ?
-                moviesArr.map(el => <MovieLayout key={el.id} movie={el}/>)
+                moviesArr.map(el => <MovieLayout key={el.id} movie={el} setMessage={setMessage} setOpen={setOpen}/>)
                 :
                 <Typography ml={3} mt={3} variant='h6' fontWeight='bold'>There are no movies that matched your
                     query.</Typography>
@@ -48,11 +51,12 @@ const MoviesLayout = ({moviesArr}) => {
                     <Loader/>
                     :
                     <Container>
+                        <SimpleSnackbar open={open} setOpen={setOpen} message={message}/>
                         <Box className={style.contentBox}>
                             <Box className={style.accordionBox}>
                                 <AccordionBar/>
                             </Box>
-                            <Box  className={style.moviesBox}>
+                            <Box className={style.moviesBox}>
                                 {
                                     renderMovies(moviesArr)
                                 }
