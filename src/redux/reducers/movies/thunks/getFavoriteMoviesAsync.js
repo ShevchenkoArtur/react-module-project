@@ -1,5 +1,6 @@
 import {fetchFavoriteMovies} from '../../../../api/routes/movies';
-import {getFavoriteMovies, toggleLoader, updatePagination} from '../actions/creators';
+import {getFavoriteMovies} from '../actions/creators';
+import {toggleLoader, updatePagination} from '../../page/actions/creators';
 
 const getFavoriteMoviesAsync = (accountId, sessionId, page) => {
     return (dispatch) => {

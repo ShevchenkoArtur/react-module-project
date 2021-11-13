@@ -1,6 +1,6 @@
 import {generateSessionId} from '../../../../api/routes/auth';
 import {getSessionId} from '../actions/creators';
-import {toggleLoader} from '../../movies/actions/creators';
+import {toggleLoader} from '../../page/actions/creators';
 
 const generateSessionIdAsync = (requestToken) => {
     return (dispatch) => {

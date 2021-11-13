@@ -1,5 +1,6 @@
-import {getMovie, toggleLoader} from '../actions/creators';
+import {getMovie} from '../actions/creators';
 import {fetchMovie} from '../../../../api/routes/movies';
+import {toggleLoader} from '../../page/actions/creators';
 
 const getMovieAsync = (id) => {
     return (dispatch) => {

@@ -7,7 +7,8 @@ import formatDate from '../../../../utils/formatDate';
 
 
 const FindButton = () => {
-    const {pagination, searchLanguage, searchReleaseDates} = useSelector(state => state.movies)
+    const {pagination} = useSelector(state => state.page)
+    const {searchLanguage, searchReleaseDates} = useSelector(state => state.movies)
     const {genresId} = useSelector(state => state.genres)
     const dispatch = useDispatch()
 

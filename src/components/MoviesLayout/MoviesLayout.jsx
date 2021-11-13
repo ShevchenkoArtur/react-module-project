@@ -10,7 +10,7 @@ import SimpleSnackbar from '../UI/SimpleSnackbar/SimpleSnackbar';
 import MoviesPagination from './MoviesPagination/MoviesPagination';
 
 const MoviesLayout = ({moviesArr}) => {
-    const {isLoading} = useSelector(state => state.movies)
+    const {isLoading} = useSelector(state => state.page)
     const [open, setOpen] = useState(false)
     const [message, setMessage] = useState('')
 

@@ -7,7 +7,7 @@ import {useLocation} from 'react-router-dom';
 import Movies from '../../Movies/Movies';
 
 const AccountConnect = () => {
-    const {isLoading} = useSelector(state => state.movies)
+    const {isLoading} = useSelector(state => state.page)
     const {sessionId, userAccount} = useSelector(state => state.users)
     const dispatch = useDispatch()
     const urlParams = useLocation().search

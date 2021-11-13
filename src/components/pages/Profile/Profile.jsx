@@ -9,7 +9,7 @@ import {getSessionId} from '../../../redux/reducers/users/actions/creators';
 import Loader from '../../UI/Loader/Loader';
 
 const Profile = () => {
-    const {isLoading} = useSelector(state => state.movies)
+    const {isLoading} = useSelector(state => state.page)
     const {userAccount, sessionId} = useSelector(state => state.users)
     const dispatch = useDispatch()
 

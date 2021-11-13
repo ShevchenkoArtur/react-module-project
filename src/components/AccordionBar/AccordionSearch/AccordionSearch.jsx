@@ -9,7 +9,8 @@ import {useDispatch, useSelector} from "react-redux";
 
 const AccordionSearch = () => {
     const [findDisabled, setFindDisabled] = useState(true)
-    const {searchInputValue, pagination} = useSelector(state => state.movies)
+    const {pagination} = useSelector(state => state.page)
+    const {searchInputValue} = useSelector(state => state.movies)
     const dispatch = useDispatch()
 
     useEffect(() => {

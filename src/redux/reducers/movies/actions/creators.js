@@ -6,11 +6,6 @@ export const getMovie = (movie) => ({type: moviesActions.GET_MOVIE, payload: {mo
 export const updateSearchLanguage = (newValue) => ({type: moviesActions.UPDATE_SEARCH_LANGUAGE, payload: {newValue}})
 export const updateSelectSortValue = (newValue) => ({type: moviesActions.UPDATE_SELECT_SORT_VALUE, payload: {newValue}})
 export const searchFilm = (movies) => ({type: moviesActions.SEARCH_FILM, payload: {movies}})
-export const toggleLoader = () => ({type: moviesActions.TOGGLE_LOADER})
-export const updatePagination = (totalPages, page) => ({
-    type: moviesActions.UPDATE_PAGINATION,
-    payload: {totalPages, page}
-})
 export const updateSearchInputValue = (newValue) => ({
     type: moviesActions.UPDATE_SEARCH_INPUT_VALUE,
     payload: {newValue}

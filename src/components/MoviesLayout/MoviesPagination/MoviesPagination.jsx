@@ -11,12 +11,13 @@ const MoviesPagination = () => {
     const dispatch = useDispatch()
 
     const {
-        pagination,
         searchInputValue,
         searchReleaseDates,
-        searchLanguage
+        searchLanguage,
+        selectSortValue
     } = useSelector(state => state.movies)
 
+    const {pagination} = useSelector(state => state.page)
     const {genresId} = useSelector(state => state.genres)
 
     const findWithFilters = (page) => {
@@ -27,7 +28,7 @@ const MoviesPagination = () => {
         const languageQuery = `with_original_language=${searchLanguage}`
 
         dispatch(
-            discoverMovieAsync(`${genresQuery}&${languageQuery}&${releaseDatesQuery}`, page)
+            discoverMovieAsync(`${genresQuery}&${languageQuery}&${releaseDatesQuery}&${selectSortValue}`, page)
         )
     }
 

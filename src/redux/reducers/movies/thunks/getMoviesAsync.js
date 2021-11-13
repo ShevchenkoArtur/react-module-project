@@ -1,5 +1,6 @@
 import {fetchMovies} from "../../../../api/routes/movies";
-import {getMovies, toggleLoader, updatePagination} from "../actions/creators";
+import {getMovies} from "../actions/creators";
+import {toggleLoader, updatePagination} from '../../page/actions/creators';
 
 const getMoviesAsync = (page) => {
     return (dispatch) => {

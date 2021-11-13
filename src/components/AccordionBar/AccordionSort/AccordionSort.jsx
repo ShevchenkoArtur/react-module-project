@@ -8,7 +8,8 @@ import {InputLabel, Select} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 
 const AccordionSort = () => {
-    const {selectSortValue, pagination} = useSelector(state => state.movies)
+    const {pagination} = useSelector(state => state.page)
+    const {selectSortValue} = useSelector(state => state.movies)
     const dispatch = useDispatch()
 
     const handleClick = (sortValue) => {

@@ -1,5 +1,6 @@
-import {searchFilm, toggleLoader, updatePagination} from '../actions/creators';
+import {searchFilm} from '../actions/creators';
 import {searchMovie} from '../../../../api/routes/movies';
+import {toggleLoader, updatePagination} from '../../page/actions/creators';
 
 const searchMovieAsync = (query, page) => {
     return (dispatch) => {

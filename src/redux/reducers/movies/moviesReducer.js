@@ -5,11 +5,6 @@ const initialState = {
     favoriteMovies: [],
     moviesAccountStates: [],
     selectedMovie: {},
-    isLoading: false,
-    pagination: {
-        page: 1,
-        totalPages: 0
-    },
     searchInputValue: '',
     searchLanguage: '',
     searchReleaseDates: {
@@ -53,20 +48,6 @@ const moviesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectSortValue: action.payload.newValue
-            }
-        case moviesActions.TOGGLE_LOADER:
-            return {
-                ...state,
-                isLoading: !state.isLoading
-            }
-        case moviesActions.UPDATE_PAGINATION:
-            return {
-                ...state,
-                pagination: {
-                    ...state.pagination,
-                    page: action.payload.page,
-                    totalPages: action.payload.totalPages
-                }
             }
         case moviesActions.UPDATE_SEARCH_INPUT_VALUE:
             return {

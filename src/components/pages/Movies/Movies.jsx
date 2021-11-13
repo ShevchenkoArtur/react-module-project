@@ -4,7 +4,8 @@ import getMoviesAsync from "../../../redux/reducers/movies/thunks/getMoviesAsync
 import MoviesLayout from '../../MoviesLayout/MoviesLayout';
 
 const Movies = () => {
-    const {movies, pagination} = useSelector(state => state.movies)
+    const {pagination} = useSelector(state => state.page)
+    const {movies} = useSelector(state => state.movies)
     const dispatch = useDispatch()
 
     useEffect(() => {
