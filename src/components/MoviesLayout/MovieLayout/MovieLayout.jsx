@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import {CardActionArea} from '@mui/material';
 import {useHistory} from 'react-router-dom';
 import Box from '@mui/material/Box';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -14,6 +14,7 @@ import {pink} from '@mui/material/colors';
 import {baseImgUrl} from '../../../api/api';
 import markAsFavoriteAsync from '../../../redux/reducers/movies/thunks/markAsFavoriteAsync';
 import style from './MovieLayout.module.css'
+import getMovieAccountStateAsync from '../../../redux/reducers/movies/thunks/getMovieAccountStateAsync';
 
 const MovieLayout = ({movie}) => {
     const history = useHistory()
@@ -26,11 +27,11 @@ const MovieLayout = ({movie}) => {
         history.push(`/movie/${movie.id}`)
     }
 
-    // useEffect(() => {
-    //     if (!moviesAccountStates.find(el => el.id === movie.id)?.id && sessionId) {
-    //         dispatch(getMovieAccountStateAsync(sessionId, movie.id))
-    //     }
-    // }, [dispatch, moviesAccountStates, movie.id, sessionId])
+    useEffect(() => {
+        if (!moviesAccountStates.find(el => el.id === movie.id)?.id && sessionId) {
+            dispatch(getMovieAccountStateAsync(sessionId, movie.id))
+        }
+    }, [dispatch, moviesAccountStates, movie.id, sessionId])
 
     const markAsFavorite = () => {
         const data = {

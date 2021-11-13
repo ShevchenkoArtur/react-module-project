@@ -15,7 +15,7 @@ const MoviesMenu = () => {
     return (
         <DropDownMenu anchor={anchor} setAnchor={setAnchor}>
             <MenuItem onClick={() => handleClick('/movies')}>Popular</MenuItem>
-            <MenuItem onClick={() => handleClick('/favorite')}>Favorite</MenuItem>
+            <MenuItem onClick={() => handleClick('/favorite')}>Favorites</MenuItem>
         </DropDownMenu>
     )
 }

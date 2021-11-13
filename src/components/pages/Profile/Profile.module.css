@@ -1,0 +1,16 @@
+.profile {
+    position: relative;
+    height: 400px;
+    display: flex;
+}
+
+.profile:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: .8;
+}
