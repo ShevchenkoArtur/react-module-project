@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Container, Paper, TextField, Typography} from '@mui/material';
+import {Box, Paper, TextField, Typography} from '@mui/material';
 import Button from '@mui/material/Button';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useHistory} from 'react-router-dom';
@@ -7,6 +7,7 @@ import {useForm} from 'react-hook-form';
 import thirdStepValidation from '../../../../validationSchemes/thirdStepValidation';
 import {useDispatch, useSelector} from 'react-redux';
 import {singup, updateRegisterUserData} from '../../../../redux/reducers/users/actions/creators';
+import './../../Login/form.css'
 
 const ThirdStep = () => {
     const {registerInputValues} = useSelector(state => state.users)
@@ -18,12 +19,6 @@ const ThirdStep = () => {
         mode: 'all'
     })
 
-    const formStyles = {
-        maxWidth: '600px',
-        borderRadius: '5px',
-        padding: '30px'
-    }
-
     const onSubmit = (data) => {
         if (registerInputValues.firstName && registerInputValues.lastName && registerInputValues.username && registerInputValues.email) {
             dispatch(singup())
@@ -34,9 +29,9 @@ const ThirdStep = () => {
     }
 
     return (
-        <Container style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh'}}>
+        <Box className='formContainer'>
             <Paper elevation={3}>
-                <form noValidate style={formStyles} onSubmit={handleSubmit(onSubmit)}>
+                <form noValidate className='formStyles' onSubmit={handleSubmit(onSubmit)}>
                     <Typography align='center' fontWeight='bold'>Step 3</Typography>
                     <Box>
                         <TextField
@@ -70,7 +65,7 @@ const ThirdStep = () => {
                     </Box>
                 </form>
             </Paper>
-        </Container>
+        </Box>
     )
 }
 

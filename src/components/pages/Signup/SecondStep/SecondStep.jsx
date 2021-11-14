@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Box, Container, InputLabel, MenuItem, Paper, Select, TextField, Typography} from '@mui/material';
+import {Box, InputLabel, MenuItem, Paper, Select, TextField, Typography} from '@mui/material';
 import Button from '@mui/material/Button';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useHistory} from 'react-router-dom';
@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {updateRegisterUserData} from '../../../../redux/reducers/users/actions/creators';
 import FormControl from '@mui/material/FormControl';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import './../../Login/form.css'
 
 const SecondStep = () => {
     const {registerInputValues} = useSelector(state => state.users)
@@ -19,12 +20,6 @@ const SecondStep = () => {
         resolver: yupResolver(secondStepValidation()),
         mode: 'all'
     })
-
-    const formStyles = {
-        maxWidth: '600px',
-        borderRadius: '5px',
-        padding: '30px'
-    }
 
     useEffect(() => {
         setValue('email', registerInputValues.email)
@@ -42,9 +37,9 @@ const SecondStep = () => {
     }
 
     return (
-        <Container style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh'}}>
+        <Box className='formContainer'>
             <Paper elevation={3}>
-                <form noValidate style={formStyles} onSubmit={handleSubmit(onSubmit)}>
+                <form noValidate className='formStyles' onSubmit={handleSubmit(onSubmit)}>
                     <Typography align='center' fontWeight='bold'>Step 2</Typography>
                     <Box mt={3}>
                         <TextField
@@ -69,7 +64,7 @@ const SecondStep = () => {
                                         {...params}
                                         fullWidth
                                         error={!!errors.birthday}
-                                        helperText={errors?.birthday?.message && 'Birthday is required'}
+                                        helperText={errors?.birthday?.message}
                                     />
                             }
                         />
@@ -106,7 +101,7 @@ const SecondStep = () => {
                     </Box>
                 </form>
             </Paper>
-        </Container>
+        </Box>
     )
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Container, Paper, TextField, Typography} from '@mui/material';
+import {Box, Paper, TextField, Typography} from '@mui/material';
 import Button from '@mui/material/Button';
 import {useHistory} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../../redux/reducers/users/actions/creators";
 import loginValidation from "../../../validationSchemes/loginValidation";
 import {generateToken} from '../../../api/routes/auth';
+import './form.css'
 
 const Login = () => {
     const {registeredUserData} = useSelector(state => state.users)
@@ -18,11 +19,6 @@ const Login = () => {
         resolver: yupResolver(loginValidation(registeredUserData?.username, registeredUserData?.password)),
         mode: 'onSubmit'
     })
-
-    const formStyles = {
-        borderRadius: '5px',
-        padding: '30px'
-    }
 
     const onSubmit = (data) => {
         dispatch(login())
@@ -35,9 +31,9 @@ const Login = () => {
     }
 
     return (
-        <Container style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '80px'}}>
+        <Box className='formContainer'>
             <Paper elevation={3}>
-                <form noValidate style={formStyles} onSubmit={handleSubmit(onSubmit)}>
+                <form noValidate className='formStyles' onSubmit={handleSubmit(onSubmit)}>
                     <Typography align='center' fontWeight='bold'>Login</Typography>
                     <Box>
                         <TextField
@@ -69,7 +65,7 @@ const Login = () => {
                     </Box>
                 </form>
             </Paper>
-        </Container>
+        </Box>
     )
 }
 

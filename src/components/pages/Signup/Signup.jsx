@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Box, Container, Paper, TextField, Typography} from '@mui/material';
+import {Box, Paper, TextField, Typography} from '@mui/material';
 import Button from '@mui/material/Button';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useHistory} from 'react-router-dom';
@@ -7,6 +7,7 @@ import {useForm} from 'react-hook-form';
 import {useDispatch, useSelector} from "react-redux";
 import signupValidation from "../../../validationSchemes/signupValidation";
 import {updateRegisterUserData} from '../../../redux/reducers/users/actions/creators';
+import './../Login/form.css'
 
 const Signup = () => {
     const history = useHistory()
@@ -17,12 +18,6 @@ const Signup = () => {
         resolver: yupResolver(signupValidation()),
         mode: 'all'
     })
-
-    const formStyles = {
-        maxWidth: '600px',
-        borderRadius: '5px',
-        padding: '30px'
-    }
 
     useEffect(() => {
         setValue('firstName', registerInputValues.firstName)
@@ -36,9 +31,9 @@ const Signup = () => {
     }
 
     return (
-        <Container style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '50px'}}>
+        <Box className='formContainer'>
             <Paper elevation={3}>
-                <form noValidate style={formStyles} onSubmit={handleSubmit(onSubmit)}>
+                <form noValidate className='formStyles' onSubmit={handleSubmit(onSubmit)}>
                     <Typography align='center' fontWeight='bold'>Step 1</Typography>
                     <Box>
                         <TextField
@@ -84,7 +79,7 @@ const Signup = () => {
                     </Box>
                 </form>
             </Paper>
-        </Container>
+        </Box>
     )
 }
 
