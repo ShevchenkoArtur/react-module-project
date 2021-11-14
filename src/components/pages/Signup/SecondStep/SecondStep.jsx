@@ -30,7 +30,8 @@ const SecondStep = () => {
         setValue('email', registerInputValues.email)
         setValue('birthday', registerInputValues.birthday)
         setValue('gender', registerInputValues.gender)
-    }, [setValue, registerInputValues.email, registerInputValues.birthday, registerInputValues.gender])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const onSubmit = (data) => {
         if (registerInputValues.firstName && registerInputValues.lastName && registerInputValues.username) {

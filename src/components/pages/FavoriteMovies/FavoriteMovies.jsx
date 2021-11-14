@@ -12,7 +12,8 @@ const FavoriteMovies = () => {
         if (!favoriteMovies.length) {
             dispatch(getFavoriteMoviesAsync(userAccount?.id, sessionId))
         }
-    }, [dispatch, favoriteMovies.length, sessionId, userAccount.id])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <MoviesLayout moviesArr={favoriteMovies}/>

@@ -35,7 +35,7 @@ const Login = () => {
     }
 
     return (
-        <Container style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh'}}>
+        <Container style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '80px'}}>
             <Paper elevation={3}>
                 <form noValidate style={formStyles} onSubmit={handleSubmit(onSubmit)}>
                     <Typography align='center' fontWeight='bold'>Login</Typography>

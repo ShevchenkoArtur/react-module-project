@@ -24,7 +24,8 @@ const SelectedMovie = () => {
 
     useEffect(() => {
         dispatch(getMovieAsync(id))
-    }, [dispatch, id])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <>

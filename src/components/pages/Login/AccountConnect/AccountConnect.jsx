@@ -21,13 +21,15 @@ const AccountConnect = () => {
         if (requestToken && !localStorage.getItem('session_id')) {
             dispatch(generateSessionIdAsync(requestToken))
         }
-    }, [dispatch, urlParams, sessionId])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     useEffect(() => {
         if (!userAccount && sessionId) {
             dispatch(getAccountAsync(sessionId))
         }
-    }, [dispatch, sessionId, userAccount])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
 
     return (

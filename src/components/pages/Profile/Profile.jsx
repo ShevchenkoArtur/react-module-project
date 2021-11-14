@@ -20,7 +20,8 @@ const Profile = () => {
             }
             dispatch(getAccountAsync(sessionId))
         }
-    }, [dispatch, sessionId, userAccount])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
 
     const bgPhoto = {

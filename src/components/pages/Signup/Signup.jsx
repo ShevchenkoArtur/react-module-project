@@ -28,14 +28,15 @@ const Signup = () => {
         setValue('firstName', registerInputValues.firstName)
         setValue('lastName', registerInputValues.lastName)
         setValue('username', registerInputValues.username)
-    }, [setValue, registerInputValues.firstName, registerInputValues.lastName, registerInputValues.username])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const onSubmit = (data) => {
         history.push('/second-step')
     }
 
     return (
-        <Container style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh'}}>
+        <Container style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '50px'}}>
             <Paper elevation={3}>
                 <form noValidate style={formStyles} onSubmit={handleSubmit(onSubmit)}>
                     <Typography align='center' fontWeight='bold'>Step 1</Typography>

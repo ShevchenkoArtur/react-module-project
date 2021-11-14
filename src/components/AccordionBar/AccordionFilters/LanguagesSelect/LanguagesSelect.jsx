@@ -16,7 +16,8 @@ const LanguagesSelect = () => {
         if (!languages.length) {
             dispatch(getLanguagesAsync())
         }
-    }, [dispatch, languages.length])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const renderLanguages = () => {
         return (

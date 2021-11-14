@@ -14,7 +14,8 @@ const GenreChips = () => {
         if (!genres.length) {
             dispatch(getGenresAsync())
         }
-    }, [dispatch, genres.length])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const renderGenresChips = () => {
         return (
@@ -35,7 +36,7 @@ const GenreChips = () => {
 
     return (
         <>
-            <Divider />
+            <Divider/>
             <Typography mt={1} fontWeight='bold' variant='body2'>Genres</Typography>
             <Box style={{display: 'flex', flexWrap: 'wrap'}}>
                 {renderGenresChips()}

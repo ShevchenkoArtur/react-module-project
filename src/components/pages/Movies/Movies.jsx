@@ -12,7 +12,8 @@ const Movies = () => {
         if (!movies.length) {
             dispatch(getMoviesAsync(pagination.page))
         }
-    }, [dispatch, pagination.page, movies.length])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return <MoviesLayout moviesArr={movies}/>
 }

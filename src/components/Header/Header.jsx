@@ -69,7 +69,6 @@ export default function HideAppBar(props) {
                                 </MenuItem>
                             </AccountMenu>
                         }
-
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>
