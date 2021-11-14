@@ -15,17 +15,6 @@ const HeaderAccountMenu = () => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    // useEffect(() => {
-    //     if (!userAccount) {
-    //         if (sessionId) {
-    //             dispatch(getAccountAsync(sessionId))
-    //         } else {
-    //             dispatch(getAccountAsync(localStorage.getItem('session_id')))
-    //         }
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [])
-
     const onLogout = () => {
         dispatch(deleteSessionAsync(sessionId))
         history.push('/')

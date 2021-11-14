@@ -4,12 +4,11 @@ import {toggleLoader} from '../../page/actions/creators';
 
 const getAccountAsync = (sessionId) => {
     return (dispatch) => {
-        dispatch(toggleLoader())
         getAccount(sessionId)
             .then(response => {
-                dispatch(toggleLoader())
                 dispatch(getUserAccount(response.data))
                 localStorage.setItem('user_account', JSON.stringify(response.data))
+                dispatch(toggleLoader())
             })
             .catch(error => {
                 console.log(error)

@@ -1,15 +1,16 @@
 import {generateSessionId} from '../../../../api/routes/auth';
 import {getSessionId} from '../actions/creators';
 import {toggleLoader} from '../../page/actions/creators';
+import getAccountAsync from "./getAccountAsync";
 
 const generateSessionIdAsync = (requestToken) => {
     return (dispatch) => {
         dispatch(toggleLoader())
         generateSessionId(requestToken)
             .then(res => {
-                dispatch(toggleLoader())
                 localStorage.setItem('session_id', res.data.session_id)
                 dispatch(getSessionId(res.data.session_id))
+                dispatch(getAccountAsync(res.data.session_id))
             })
     }
 }
