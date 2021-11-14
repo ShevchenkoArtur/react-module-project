@@ -9,9 +9,9 @@ const Movies = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (!movies.length) {
+        // if (!movies.length) {
             dispatch(getMoviesAsync(pagination.page))
-        }
+        // }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

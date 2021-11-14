@@ -91,7 +91,7 @@ const MovieLayout = ({movie, setOpen, setMessage}) => {
                         <CardMedia
                             style={{position: 'relative'}}
                             component="img"
-                            image={`${baseImgUrl}${movie?.poster_path}`}
+                            image={`${baseImgUrl}${movie.poster_path}`}
                             alt="poster image"
                             onClick={onFilmClick}
                         />

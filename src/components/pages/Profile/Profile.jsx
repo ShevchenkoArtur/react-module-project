@@ -1,28 +1,24 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Container, Typography} from '@mui/material';
 import Box from '@mui/material/Box';
 import {baseImgUrl} from '../../../api/api';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import style from './Profile.module.css'
-import getAccountAsync from '../../../redux/reducers/users/thunks/getAccountAsync';
-import {getSessionId} from '../../../redux/reducers/users/actions/creators';
 import Loader from '../../UI/Loader/Loader';
 
 const Profile = () => {
     const {isLoading} = useSelector(state => state.page)
-    const {userAccount, sessionId} = useSelector(state => state.users)
-    const dispatch = useDispatch()
+    const {userAccount} = useSelector(state => state.users)
 
-    useEffect(() => {
-        if (!userAccount) {
-            if (!sessionId) {
-                dispatch(getSessionId(localStorage.getItem('session_id')))
-            }
-            dispatch(getAccountAsync(sessionId))
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
+    // useEffect(() => {
+    //     if (!userAccount) {
+    //         if (!sessionId) {
+    //             dispatch(getSessionId(localStorage.getItem('session_id')))
+    //         }
+    //         dispatch(getAccountAsync(sessionId))
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [])
 
     const bgPhoto = {
         background: `no-repeat center/cover grey url(${baseImgUrl}${userAccount?.avatar.tmdb.avatar_path})`

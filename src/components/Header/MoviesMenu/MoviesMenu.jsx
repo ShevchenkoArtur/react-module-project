@@ -1,22 +1,35 @@
 import React from 'react';
-import DropDownMenu from '../../UI/DropDownMenu/DropDownMenu';
-import MenuItem from '@mui/material/MenuItem';
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import {Typography} from "@mui/material";
 
 const MoviesMenu = () => {
     const history = useHistory()
-    const [anchor, setAnchor] = React.useState(null)
 
     const handleClick = (routes) => {
-        setAnchor(null)
         history.push(routes)
     }
 
     return (
-        <DropDownMenu anchor={anchor} setAnchor={setAnchor}>
-            <MenuItem onClick={() => handleClick('/movies')}>Popular</MenuItem>
-            <MenuItem onClick={() => handleClick('/favorite')}>Favorites</MenuItem>
-        </DropDownMenu>
+        <Box sx={{bgcolor: 'inherit'}}>
+            <nav>
+                <List style={{display: 'flex'}}>
+                    <ListItem disablePadding>
+                        <ListItemButton onClick={() => handleClick('/movies')}>
+                            <Typography fontWeight='bold'>Popular</Typography>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton onClick={() => handleClick('/favorite')}>
+                            <Typography fontWeight='bold'>Favorites</Typography>
+                        </ListItemButton>
+                    </ListItem>
+                </List>
+            </nav>
+        </Box>
     )
 }
 
