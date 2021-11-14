@@ -47,6 +47,18 @@ const genresReducer = (state=initialState, action) => {
                     genresId: [...state.genresId, action.payload.genreId]
                 }
             }
+        case genresActions.RESET_GENRES:
+            return {
+                ...state,
+                genresId: [],
+                genres: state.genres.map(el => {
+                    return {
+                        ...el,
+                        isClicked: false
+                    }
+                })
+            }
+
         default:
             return state
     }

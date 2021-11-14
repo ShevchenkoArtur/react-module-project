@@ -35,6 +35,18 @@ const sortAndFilters = (state=initialState, action) => {
                 ...state,
                 searchInputValue: action.payload.newValue
             }
+        case sortAndFiltersActions.RESET_ALL:
+            return {
+                ...state,
+                searchInputValue: '',
+                searchLanguage: '',
+                searchReleaseDates: {
+                    ...state.searchReleaseDates,
+                    startDate: null,
+                    endDate: null
+                },
+                selectSortValue: '',
+            }
         default:
             return state
     }

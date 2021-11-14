@@ -1,5 +1,6 @@
 import sortAndFiltersActions from './constants';
 
+export const resetAll = () => ({type: sortAndFiltersActions.RESET_ALL})
 export const updateSearchLanguage = (newValue) => ({
     type: sortAndFiltersActions.UPDATE_SEARCH_LANGUAGE,
     payload: {newValue}
