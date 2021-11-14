@@ -6,7 +6,7 @@ import Footer from "../Footer/Footer";
 
 const Main = () => {
     return (
-        <Box style={{display: 'flex', flexDirection: 'column', minHeight: '100vh', overflow: 'hidden'}}>
+        <Box style={{display: 'flex', flexDirection: 'column', minHeight: '100vh', overflow: 'hidden', position: 'relative'}}>
             <Header/>
             <Routes/>
             <Footer/>
