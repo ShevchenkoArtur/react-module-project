@@ -1,31 +1,28 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import {useSelector} from 'react-redux';
-import {baseImgUrl} from '../../../api/api';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const AccountMenu = ({children}) => {
-    const {userAccount} = useSelector(state => state.users)
     const [anchorEl, setAnchorEl] = React.useState(null)
     const open = Boolean(anchorEl)
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget)
     }
+
     const handleClose = () => {
         setAnchorEl(null)
     }
+
     return (
         <React.Fragment>
             <Box sx={{display: 'flex', alignItems: 'center', textAlign: 'center'}}>
                 <Tooltip title="Account settings">
                     <IconButton onClick={handleClick} size="small" sx={{ml: 2}}>
-                        <Avatar sx={{width: 32, height: 32}}>
-                            <img width='32' height='32' src={`${baseImgUrl}/${userAccount && userAccount.avatar.tmdb.avatar_path}`}
-                                 alt="avatar"/>
-                        </Avatar>
+                        <AccountCircleIcon fontSize='large'/>
                     </IconButton>
                 </Tooltip>
             </Box>
