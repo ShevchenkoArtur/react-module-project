@@ -6,6 +6,7 @@ import genresReducer from './genres/genresReducer';
 import languagesReducer from './languages/languagesReducer';
 import pageReducer from './page/pageReducer';
 import sortAndFilters from './sortAndFilters/sortAndFiltersReducer';
+import snackbarReducer from './snackbar/snackbarReducer';
 
 const rootReducer = combineReducers({
     page: pageReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     genres: genresReducer,
     languages: languagesReducer,
     theme: themeReducer,
-    sortAndFilters: sortAndFilters
+    sortAndFilters: sortAndFilters,
+    snackbar: snackbarReducer
 })
 
 export default rootReducer;

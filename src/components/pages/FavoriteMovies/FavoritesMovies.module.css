@@ -1,0 +1,15 @@
+.moviesBox {
+    margin-bottom: 80px;
+}
+
+.contentBox {
+    margin-top: 30px;
+}
+
+@media (min-width: 780px) {
+    .moviesBox {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -8px 80px -8px;
+    }
+}

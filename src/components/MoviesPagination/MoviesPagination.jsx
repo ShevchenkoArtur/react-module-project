@@ -1,14 +1,20 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import style from '../MoviesLayout.module.css';
-import PaginationSize from '../../UI/PaginationSize/PaginationSize';
+import PaginationSize from '../UI/PaginationSize/PaginationSize';
 import {useDispatch, useSelector} from 'react-redux';
-import formatDate from '../../../utils/formatDate';
-import discoverMovieAsync from '../../../redux/reducers/movies/thunks/discoverMovieAsync';
-import searchMovieAsync from '../../../redux/reducers/movies/thunks/searchMovieAsync';
+import formatDate from '../../utils/formatDate';
+import discoverMovieAsync from '../../redux/reducers/movies/thunks/discoverMovieAsync';
+import searchMovieAsync from '../../redux/reducers/movies/thunks/searchMovieAsync';
 
 const MoviesPagination = () => {
     const dispatch = useDispatch()
+
+    const paginationStyles = {
+        position: 'absolute',
+        bottom: '80px',
+        left: '50%',
+        transform: 'translateX(-50%)'
+    }
 
     const {
         searchInputValue,
@@ -41,7 +47,7 @@ const MoviesPagination = () => {
     }
 
     return (
-        <Box className={style.paginationBox}>
+        <Box style={paginationStyles}>
             <PaginationSize count={pagination.totalPages} page={pagination.page}
                             handleChange={onChangePage}/>
         </Box>

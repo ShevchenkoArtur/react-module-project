@@ -13,10 +13,11 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {pink} from '@mui/material/colors';
 import {baseImgUrl} from '../../../api/api';
 import markAsFavoriteAsync from '../../../redux/reducers/movies/thunks/markAsFavoriteAsync';
-import style from './MovieLayout.module.css'
+import style from './Movie.module.css'
 import getMovieAccountStateAsync from '../../../redux/reducers/movies/thunks/getMovieAccountStateAsync';
+import {setMessage, setOpener} from '../../../redux/reducers/snackbar/actions/creators';
 
-const MovieLayout = ({movie, setOpen, setMessage}) => {
+const Movie = ({movie}) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const {moviesAccountStates} = useSelector(state => state.movies)
@@ -42,8 +43,8 @@ const MovieLayout = ({movie, setOpen, setMessage}) => {
         }
 
         dispatch(markAsFavoriteAsync(data, sessionId, userAccount.id, movie))
-        setMessage('Added to your favourite list')
-        setOpen(true)
+        dispatch(setMessage('Added to your favourite list'))
+        dispatch(setOpener(true))
     }
 
     const unmarkAsFavorite = () => {
@@ -54,8 +55,8 @@ const MovieLayout = ({movie, setOpen, setMessage}) => {
         }
 
         dispatch(markAsFavoriteAsync(data, sessionId, userAccount.id, movie))
-        setMessage('Removed from your favourite list')
-        setOpen(true)
+        dispatch(setMessage('Removed from your favourite list'))
+        dispatch(setOpener(true))
     }
 
     const renderFavoriteIcon = () => {
@@ -115,4 +116,4 @@ const MovieLayout = ({movie, setOpen, setMessage}) => {
     )
 }
 
-export default MovieLayout;
+export default Movie;

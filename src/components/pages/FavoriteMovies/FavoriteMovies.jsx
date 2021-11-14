@@ -1,7 +1,12 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import getFavoriteMoviesAsync from '../../../redux/reducers/movies/thunks/getFavoriteMoviesAsync';
-import MoviesLayout from '../../MoviesLayout/MoviesLayout';
+import MoviesPagination from '../../MoviesPagination/MoviesPagination';
+import {Container} from '@mui/material';
+import MoviesList from '../../MoviesList/MoviesList';
+import Box from '@mui/material/Box';
+import style from './FavoritesMovies.module.css'
+import SimpleSnackbar from '../../UI/SimpleSnackbar/SimpleSnackbar';
 
 const FavoriteMovies = () => {
     const dispatch = useDispatch()
@@ -10,7 +15,7 @@ const FavoriteMovies = () => {
 
     useEffect(() => {
         // if (!favoriteMovies.length) {
-        if(sessionId) {
+        if (sessionId) {
             dispatch(getFavoriteMoviesAsync(userAccount?.id, sessionId))
         } else {
             dispatch(getFavoriteMoviesAsync(userAccount?.id, localStorage.getItem('session_id')))
@@ -20,7 +25,15 @@ const FavoriteMovies = () => {
     }, [])
 
     return (
-        <MoviesLayout moviesArr={favoriteMovies}/>
+        <Container>
+            <SimpleSnackbar />
+            <Box className={style.contentBox}>
+                <Box className={style.moviesBox}>
+                    <MoviesList moviesArr={favoriteMovies}/>
+                </Box>
+                <MoviesPagination/>
+            </Box>
+        </Container>
     )
 }
 

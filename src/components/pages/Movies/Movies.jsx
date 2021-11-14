@@ -1,11 +1,16 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import getMoviesAsync from "../../../redux/reducers/movies/thunks/getMoviesAsync";
-import MoviesLayout from '../../MoviesLayout/MoviesLayout';
-import Loader from '../../UI/Loader/Loader';
+import MoviesPagination from '../../MoviesPagination/MoviesPagination';
+import {Container} from '@mui/material';
+import SimpleSnackbar from '../../UI/SimpleSnackbar/SimpleSnackbar';
+import Box from '@mui/material/Box';
+import AccordionBar from '../../AccordionBar/AccordionBar';
+import MoviesList from '../../MoviesList/MoviesList';
+import style from './Movies.module.css'
 
 const Movies = () => {
-    const {pagination, isLoading} = useSelector(state => state.page)
+    const {pagination} = useSelector(state => state.page)
     const {movies} = useSelector(state => state.movies)
     const dispatch = useDispatch()
 
@@ -17,11 +22,18 @@ const Movies = () => {
     }, [])
 
     return (
-        isLoading
-            ?
-            <Loader/>
-            :
-            <MoviesLayout moviesArr={movies}/>
+        <Container>
+            <SimpleSnackbar />
+            <Box className={style.contentBox}>
+                <Box className={style.accordionBox}>
+                    <AccordionBar/>
+                </Box>
+                <Box className={style.moviesBox}>
+                    <MoviesList moviesArr={movies}/>
+                </Box>
+            </Box>
+            <MoviesPagination/>
+        </Container>
     )
 }
 

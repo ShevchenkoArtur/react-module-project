@@ -2,23 +2,28 @@ import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import {useDispatch, useSelector} from 'react-redux';
+import {setOpener} from '../../../redux/reducers/snackbar/actions/creators';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={3} ref={ref} variant="filled" {...props} />
 })
 
-const SimpleSnackbars = ({open, setOpen, message}) => {
+const SimpleSnackbars = () => {
+    const {isOpen, message} = useSelector(state => state.snackbar)
+    const dispatch = useDispatch()
+
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return
         }
 
-        setOpen(false)
+        dispatch(setOpener(false))
     }
 
     return (
         <Stack>
-            <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}
+            <Snackbar open={isOpen} autoHideDuration={3000} onClose={handleClose}
                       anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
                 <Alert onClose={handleClose} severity="success" sx={{width: '100%'}}>
                     {message}
