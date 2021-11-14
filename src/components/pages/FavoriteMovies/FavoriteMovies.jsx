@@ -7,9 +7,11 @@ import MoviesList from '../../MoviesList/MoviesList';
 import Box from '@mui/material/Box';
 import style from './FavoritesMovies.module.css'
 import SimpleSnackbar from '../../UI/SimpleSnackbar/SimpleSnackbar';
+import Loader from '../../UI/Loader/Loader';
 
 const FavoriteMovies = () => {
     const dispatch = useDispatch()
+    const {isLoading} = useSelector(state => state.page)
     const {favoriteMovies} = useSelector(state => state.movies)
     const {userAccount, sessionId} = useSelector(state => state.users)
 
@@ -26,10 +28,17 @@ const FavoriteMovies = () => {
 
     return (
         <Container>
-            <SimpleSnackbar />
+            <SimpleSnackbar/>
             <Box className={style.contentBox}>
                 <Box className={style.moviesBox}>
-                    <MoviesList moviesArr={favoriteMovies}/>
+                    {
+                        isLoading
+                            ?
+                            <Loader/>
+                            :
+                            <MoviesList moviesArr={favoriteMovies}/>
+                    }
+
                 </Box>
                 <MoviesPagination/>
             </Box>

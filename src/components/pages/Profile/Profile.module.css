@@ -1,6 +1,6 @@
 .profile {
     position: relative;
-    height: 400px;
+    flex-grow: 1;
     display: flex;
 }
 

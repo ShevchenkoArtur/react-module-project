@@ -24,7 +24,7 @@ const SimpleSnackbars = () => {
     return (
         <Stack>
             <Snackbar open={isOpen} autoHideDuration={3000} onClose={handleClose}
-                      anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
+                      anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}>
                 <Alert onClose={handleClose} severity="success" sx={{width: '100%'}}>
                     {message}
                 </Alert>

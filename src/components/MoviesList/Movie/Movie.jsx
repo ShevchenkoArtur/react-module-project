@@ -29,9 +29,9 @@ const Movie = ({movie}) => {
     }
 
     useEffect(() => {
-        if (!moviesAccountStates.find(el => el.id === movie.id)?.id && sessionId) {
-            dispatch(getMovieAccountStateAsync(sessionId, movie.id))
-        }
+        // if (!moviesAccountStates.find(el => el.id === movie.id)?.id && sessionId) {
+            dispatch(getMovieAccountStateAsync(localStorage.getItem('session_id'), movie.id))
+        // }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

@@ -11,7 +11,6 @@ import Box from "@mui/material/Box";
 import HideOnScroll from "./HideOnScroll/HideOnScroll";
 
 const Header = (props) => {
-    const {sessionId} = useSelector(state => state.users)
     const {isLightMode} = useSelector(state => state.theme)
     const dispatch = useDispatch()
 
@@ -23,13 +22,13 @@ const Header = (props) => {
                     <Toolbar style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                         <Box>
                             {
-                                (sessionId || localStorage.getItem('session_id')) && <MoviesMenu/>
+                                (localStorage.getItem('session_id')) && <MoviesMenu/>
                             }
                         </Box>
                         <Box style={{display: 'flex', alignItems: 'center'}}>
                             <ThemeSwitch checked={!isLightMode} onClick={() => dispatch(toggleTheme())}/>
                             {
-                                (sessionId || localStorage.getItem('session_id')) && <HeaderAccountMenu/>
+                                (localStorage.getItem('session_id')) && <HeaderAccountMenu/>
                             }
                         </Box>
                     </Toolbar>

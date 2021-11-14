@@ -1,9 +1,10 @@
-.imgBox {
-    display: flex;
+.selectedMovie {
     position: relative;
+    flex-grow: 1;
+    display: flex;
 }
 
-.imgBox:before {
+.selectedMovie:before {
     content: '';
     position: absolute;
     top: 0;

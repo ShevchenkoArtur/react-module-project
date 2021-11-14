@@ -8,7 +8,7 @@ import Loader from '../../UI/Loader/Loader';
 
 const Profile = () => {
     const {isLoading} = useSelector(state => state.page)
-    const {userAccount} = useSelector(state => state.users)
+    const userAccount = JSON.parse(localStorage.getItem('user_account'))
 
     const bgPhoto = {
         background: `no-repeat center/cover grey url(${baseImgUrl}${userAccount?.avatar.tmdb.avatar_path})`

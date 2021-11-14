@@ -11,12 +11,12 @@ import deleteSessionAsync from "../../../redux/reducers/users/thunks/deleteSessi
 import {useHistory} from "react-router-dom";
 
 const HeaderAccountMenu = () => {
-    const {userAccount, sessionId} = useSelector(state => state.users)
     const dispatch = useDispatch()
     const history = useHistory()
+    const userAccount = JSON.parse(localStorage.getItem('user_account'))
 
     const onLogout = () => {
-        dispatch(deleteSessionAsync(sessionId))
+        dispatch(deleteSessionAsync(localStorage.getItem('session_id')))
         history.push('/')
     }
 
