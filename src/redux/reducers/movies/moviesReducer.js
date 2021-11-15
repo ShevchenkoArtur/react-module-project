@@ -61,6 +61,11 @@ const moviesReducer = (state = initialState, action) => {
                 ...state,
                 selectedMovie: {}
             }
+        case moviesActions.RESET_MOVIE_ACCOUNT_STATES:
+            return {
+                ...state,
+                moviesAccountStates: []
+            }
         default:
             return state
     }

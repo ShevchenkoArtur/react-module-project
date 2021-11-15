@@ -23,13 +23,16 @@ const Movie = ({movie}) => {
     const {moviesAccountStates} = useSelector(state => state.movies)
     const {sessionId, userAccount} = useSelector(state => state.users)
     const [imgHover, setImgHover] = useState(false)
+    const noPhotoUrl = 'https://bytes.ua/wp-content/uploads/2017/08/no-image.png'
 
     const onFilmClick = () => {
         history.push(`/movie/${movie.id}`)
     }
 
     useEffect(() => {
-        dispatch(getMovieAccountStateAsync(localStorage.getItem('session_id'), movie.id))
+        if(!moviesAccountStates.length) {
+            dispatch(getMovieAccountStateAsync(localStorage.getItem('session_id'), movie.id))
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -90,7 +93,7 @@ const Movie = ({movie}) => {
                         <CardMedia
                             style={{position: 'relative'}}
                             component="img"
-                            image={`${baseImgUrl}${movie.poster_path}`}
+                            image={movie.poster_path ? `${baseImgUrl}/${movie.poster_path}` : noPhotoUrl}
                             alt="poster image"
                             onClick={onFilmClick}
                         />
