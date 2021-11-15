@@ -3,7 +3,8 @@ import * as yup from 'yup';
 const secondStepValidation = () => {
     return yup.object().shape({
         email: yup.string().required('Email is required').email('Email is Invalid'),
-        gender: yup.string().required('Gender is required')
+        gender: yup.string().nullable().required('Gender is required'),
+        birthday: yup.string().required('Birthday is required')
     })
 }
 

@@ -62,6 +62,7 @@ const SecondStep = () => {
                                 (params) =>
                                     <TextField
                                         {...params}
+                                        {...register('birthday', {value: params.inputProps.value})}
                                         fullWidth
                                         error={!!errors.birthday}
                                         helperText={errors?.birthday?.message}

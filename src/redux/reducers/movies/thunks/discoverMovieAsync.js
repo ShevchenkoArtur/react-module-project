@@ -7,7 +7,6 @@ const discoverMovieAsync = (discoverQuery, page) => {
         dispatch(toggleLoader())
         discoverMovie(discoverQuery, page)
             .then(response => {
-                console.log(response)
                 dispatch(updatePagination(response.data.total_pages, response.data.page))
                 dispatch(getMovies(response.data.results))
                 dispatch(toggleLoader())

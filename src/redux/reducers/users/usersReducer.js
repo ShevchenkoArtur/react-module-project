@@ -16,16 +16,7 @@ const initialState = {
         confirmedPassword: ''
     },
 
-    registeredUserData: {
-        firstName: '',
-        lastName: '',
-        username: '1',
-        birthday: null,
-        gender: '',
-        email: '',
-        password: '1',
-        confirmedPassword: '1'
-    }
+    registeredUserData: {}
 }
 
 const usersReducer = (state = initialState, action) => {

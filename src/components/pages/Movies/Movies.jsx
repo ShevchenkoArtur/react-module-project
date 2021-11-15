@@ -44,10 +44,8 @@ const Movies = () => {
 
     useEffect(() => {
         if (searchInputValue) {
-            console.log('Если поиск есть')
             dispatch(searchMovieAsync(searchInputValue, pagination.page))
         } else if (searchReleaseDates.startDate || searchReleaseDates.endDate || selectSortValue || searchLanguage || genresId.length) {
-            console.log('Если фильтры есть')
             findWithFilters(pagination.page)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,7 +55,6 @@ const Movies = () => {
         if (sessionId || localStorage.getItem('session_id')) {
             history.push('/movies')
             if (!searchInputValue && !searchReleaseDates.startDate && !searchReleaseDates.endDate && !selectSortValue && !searchLanguage && !genresId.length) {
-                console.log('Кэжуал загрузка')
                 dispatch(getMoviesAsync(pagination.page))
             }
         }
