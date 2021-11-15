@@ -13,7 +13,7 @@ import {useHistory} from "react-router-dom";
 const HeaderAccountMenu = () => {
     const dispatch = useDispatch()
     const history = useHistory()
-    const userAccount = JSON.parse(localStorage.getItem('user_account'))
+    const {userAccount} = useSelector(state => state.users)
 
     const onLogout = () => {
         dispatch(deleteSessionAsync(localStorage.getItem('session_id')))

@@ -20,21 +20,14 @@ const Movies = () => {
     const history = useHistory()
 
     useEffect(() => {
-        // if (!movies.length) {
-        dispatch(getMoviesAsync(pagination.page))
-        // }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
-    useEffect(() => {
         if (sessionId || localStorage.getItem('session_id')) {
             history.push('/movies')
+            dispatch(getMoviesAsync(pagination.page))
         }
 
         if (!userAccount && localStorage.getItem('user_account')) {
             dispatch(getUserAccount(JSON.parse(localStorage.getItem('user_account'))))
         }
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sessionId])
 

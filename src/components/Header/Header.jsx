@@ -9,10 +9,24 @@ import MoviesMenu from './MoviesMenu/MoviesMenu';
 import HeaderAccountMenu from "./HeaderAccountMenu/HeaderAccountMenu";
 import Box from "@mui/material/Box";
 import HideOnScroll from "./HideOnScroll/HideOnScroll";
+import {useEffect} from 'react';
+import {getSessionId, getUserAccount} from '../../redux/reducers/users/actions/creators';
 
 const Header = (props) => {
+    const {sessionId, userAccount} = useSelector(state => state.users)
     const {isLightMode} = useSelector(state => state.theme)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (!sessionId && localStorage.getItem('session_id')) {
+            dispatch(getSessionId(localStorage.getItem('session_id')))
+        }
+
+        if(localStorage.getItem('user_account') && !userAccount) {
+            dispatch(getUserAccount(JSON.parse(localStorage.getItem('user_account'))))
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <>
@@ -22,13 +36,13 @@ const Header = (props) => {
                     <Toolbar style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                         <Box>
                             {
-                                (localStorage.getItem('session_id')) && <MoviesMenu/>
+                                sessionId &&  <MoviesMenu/>
                             }
                         </Box>
                         <Box style={{display: 'flex', alignItems: 'center'}}>
                             <ThemeSwitch checked={!isLightMode} onClick={() => dispatch(toggleTheme())}/>
                             {
-                                (localStorage.getItem('session_id')) && <HeaderAccountMenu/>
+                                sessionId && <HeaderAccountMenu/>
                             }
                         </Box>
                     </Toolbar>

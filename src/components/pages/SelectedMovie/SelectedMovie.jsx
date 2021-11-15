@@ -8,7 +8,7 @@ import {Container, Typography} from '@mui/material';
 import style from './SelectedMovie.module.css'
 
 const SelectedMovie = () => {
-    const {selectedMovie, isLoading} = useSelector(state => state.movies)
+    const {selectedMovie} = useSelector(state => state.movies)
     const dispatch = useDispatch()
     const {id} = useParams()
 
