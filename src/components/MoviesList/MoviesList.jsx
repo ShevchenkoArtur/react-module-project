@@ -11,6 +11,7 @@ const MoviesList = ({moviesArr}) => {
         return () => {
             dispatch(resetMovieAccountStates())
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
