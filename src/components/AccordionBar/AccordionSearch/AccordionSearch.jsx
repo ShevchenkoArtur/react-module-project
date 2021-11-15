@@ -6,14 +6,12 @@ import getMoviesAsync from "../../../redux/reducers/movies/thunks/getMoviesAsync
 import searchMovieAsync from "../../../redux/reducers/movies/thunks/searchMovieAsync";
 import {useDispatch, useSelector} from "react-redux";
 import {updateSearchInputValue} from '../../../redux/reducers/sortAndFilters/actions/creators';
-import {useHistory} from 'react-router-dom';
 
 const AccordionSearch = () => {
     const [findDisabled, setFindDisabled] = useState(true)
     const {pagination} = useSelector(state => state.page)
     const {searchInputValue} = useSelector(state => state.sortAndFilters)
     const dispatch = useDispatch()
-    const history = useHistory()
 
     useEffect(() => {
         searchInputValue ? setFindDisabled(false) : setFindDisabled(true)
@@ -22,12 +20,12 @@ const AccordionSearch = () => {
     const updateSearchValue = (e) => {
         dispatch(updateSearchInputValue(e.target.value))
         if (!e.target.value) {
-            dispatch(getMoviesAsync(pagination.page, history))
+            dispatch(getMoviesAsync(pagination.page))
         }
     }
 
     const onSearchMovie = () => {
-        dispatch(searchMovieAsync(searchInputValue, pagination.page, history))
+        dispatch(searchMovieAsync(searchInputValue, pagination.page))
     }
 
     return (

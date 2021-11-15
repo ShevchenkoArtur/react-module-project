@@ -1,14 +1,16 @@
 import React from 'react';
-import {Container, Typography} from '@mui/material';
+import {Button, Container, Typography} from '@mui/material';
 import Box from '@mui/material/Box';
 import {baseImgUrl} from '../../../api/api';
 import {useSelector} from 'react-redux';
 import style from './Profile.module.css'
 import Loader from '../../UI/Loader/Loader';
+import {useHistory} from 'react-router-dom';
 
 const Profile = () => {
     const {isLoading} = useSelector(state => state.page)
     const userAccount = JSON.parse(localStorage.getItem('user_account'))
+    const history = useHistory()
 
     const bgPhoto = {
         background: `no-repeat center/cover grey url(${baseImgUrl}${userAccount?.avatar.tmdb.avatar_path})`
@@ -28,6 +30,9 @@ const Profile = () => {
                                 <Box mt={3} ml={2} style={{color: '#fff'}}>
                                     <Typography fontWeight='bold'>{userAccount?.name}</Typography>
                                     <Typography>{userAccount?.username}</Typography>
+                                    <Box mt={2}>
+                                        <Button onClick={() => history.push('/favorite')}>My Favorites</Button>
+                                    </Box>
                                 </Box>
                             </Container>
                         </Box>

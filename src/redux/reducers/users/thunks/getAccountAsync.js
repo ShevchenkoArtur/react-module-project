@@ -2,7 +2,7 @@ import {getAccount} from '../../../../api/routes/auth';
 import {getUserAccount} from '../actions/creators';
 import {toggleLoader} from '../../page/actions/creators';
 
-const getAccountAsync = (sessionId, history) => {
+const getAccountAsync = (sessionId) => {
     return (dispatch) => {
         getAccount(sessionId)
             .then(response => {
@@ -11,7 +11,7 @@ const getAccountAsync = (sessionId, history) => {
                 dispatch(toggleLoader())
             })
             .catch(error => {
-                history.push('/error')
+                window.location.href = '/error'
             })
     }
 }

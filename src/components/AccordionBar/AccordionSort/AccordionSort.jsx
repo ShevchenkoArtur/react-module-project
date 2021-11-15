@@ -6,17 +6,15 @@ import discoverMovieAsync from '../../../redux/reducers/movies/thunks/discoverMo
 import {InputLabel, Select} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import {updateSelectSortValue} from '../../../redux/reducers/sortAndFilters/actions/creators';
-import {useHistory} from 'react-router-dom';
 
 const AccordionSort = () => {
     const {pagination} = useSelector(state => state.page)
     const {selectSortValue} = useSelector(state => state.sortAndFilters)
     const dispatch = useDispatch()
-    const history = useHistory()
 
     const handleClick = (sortValue) => {
         dispatch(updateSelectSortValue(sortValue))
-        dispatch(discoverMovieAsync(sortValue, pagination.page, history))
+        dispatch(discoverMovieAsync(sortValue, pagination.page))
     }
 
     return (

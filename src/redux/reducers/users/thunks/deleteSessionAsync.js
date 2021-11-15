@@ -2,7 +2,7 @@ import {deleteSession} from '../../../../api/routes/auth';
 import {logout} from '../actions/creators';
 import {toggleLoader} from '../../page/actions/creators';
 
-const deleteSessionAsync = (sessionId, history) => {
+const deleteSessionAsync = (sessionId) => {
     return (dispatch) => {
         dispatch(toggleLoader())
         deleteSession(sessionId)
@@ -13,7 +13,7 @@ const deleteSessionAsync = (sessionId, history) => {
                 dispatch(toggleLoader())
             })
             .catch(error => {
-                history.push('/error')
+                window.location.href = '/error'
             })
     }
 }

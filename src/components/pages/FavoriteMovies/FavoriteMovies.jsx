@@ -8,21 +8,19 @@ import Box from '@mui/material/Box';
 import style from './FavoritesMovies.module.css'
 import SimpleSnackbar from '../../UI/SimpleSnackbar/SimpleSnackbar';
 import Loader from '../../UI/Loader/Loader';
-import {useHistory} from 'react-router-dom';
 
 const FavoriteMovies = () => {
     const dispatch = useDispatch()
     const {isLoading} = useSelector(state => state.page)
     const {favoriteMovies} = useSelector(state => state.movies)
     const {userAccount, sessionId} = useSelector(state => state.users)
-    const history = useHistory()
 
     useEffect(() => {
         // if (!favoriteMovies.length) {
         if (sessionId) {
-            dispatch(getFavoriteMoviesAsync(userAccount?.id, sessionId, history))
+            dispatch(getFavoriteMoviesAsync(userAccount?.id, sessionId))
         } else {
-            dispatch(getFavoriteMoviesAsync(userAccount?.id, localStorage.getItem('session_id'), history))
+            dispatch(getFavoriteMoviesAsync(userAccount?.id, localStorage.getItem('session_id')))
         }
         // }
         // eslint-disable-next-line react-hooks/exhaustive-deps

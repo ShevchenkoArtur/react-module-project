@@ -5,16 +5,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Divider, Typography} from '@mui/material';
 import getGenresAsync from '../../../../redux/reducers/genres/thunks/getGenresAsync';
 import {updateGenresId} from '../../../../redux/reducers/genres/actions/creators';
-import {useHistory} from 'react-router-dom';
 
 const GenreChips = () => {
     const {genres} = useSelector(state => state.genres)
     const dispatch = useDispatch()
-    const history = useHistory()
 
     useEffect(() => {
         if (!genres.length) {
-            dispatch(getGenresAsync(history))
+            dispatch(getGenresAsync())
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

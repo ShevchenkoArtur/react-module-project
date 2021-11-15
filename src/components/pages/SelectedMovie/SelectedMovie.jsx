@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useHistory, useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux';
 import getMovieAsync from '../../../redux/reducers/movies/thunks/getMovieAsync';
 import {baseImgUrl} from '../../../api/api';
@@ -14,7 +14,6 @@ const SelectedMovie = () => {
     const {selectedMovie} = useSelector(state => state.movies)
     const dispatch = useDispatch()
     const {id} = useParams()
-    const history = useHistory()
 
     const bgPhoto = {
         background: `no-repeat center/cover grey url(${baseImgUrl}${selectedMovie?.backdrop_path})`
@@ -34,7 +33,7 @@ const SelectedMovie = () => {
     }, [])
 
     useEffect(() => {
-        dispatch(getMovieAsync(id, history))
+        dispatch(getMovieAsync(id))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

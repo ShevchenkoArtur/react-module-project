@@ -3,7 +3,7 @@ import {getSessionId} from '../actions/creators';
 import {toggleLoader} from '../../page/actions/creators';
 import getAccountAsync from "./getAccountAsync";
 
-const generateSessionIdAsync = (requestToken, history) => {
+const generateSessionIdAsync = (requestToken) => {
     return (dispatch) => {
         dispatch(toggleLoader())
         generateSessionId(requestToken)
@@ -13,7 +13,7 @@ const generateSessionIdAsync = (requestToken, history) => {
                 dispatch(getAccountAsync(res.data.session_id))
             })
             .catch(error => {
-                history.push('/error')
+                window.location.href = '/error'
             })
     }
 }

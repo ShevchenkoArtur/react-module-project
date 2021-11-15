@@ -22,7 +22,7 @@ const Movies = () => {
     useEffect(() => {
         if (sessionId || localStorage.getItem('session_id')) {
             history.push('/movies')
-            dispatch(getMoviesAsync(pagination.page, history))
+            dispatch(getMoviesAsync(pagination.page))
         }
 
         if (!userAccount && localStorage.getItem('user_account')) {

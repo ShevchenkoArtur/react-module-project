@@ -2,7 +2,7 @@ import {fetchFavoriteMovies} from '../../../../api/routes/movies';
 import {getFavoriteMovies} from '../actions/creators';
 import {toggleLoader, updatePagination} from '../../page/actions/creators';
 
-const getFavoriteMoviesAsync = (accountId, sessionId, page, history) => {
+const getFavoriteMoviesAsync = (accountId, sessionId, page) => {
     return (dispatch) => {
         dispatch(toggleLoader())
         fetchFavoriteMovies(accountId, sessionId, page)
@@ -12,7 +12,7 @@ const getFavoriteMoviesAsync = (accountId, sessionId, page, history) => {
                 dispatch(toggleLoader())
             })
             .catch(error => {
-                history.push('/error')
+                window.location.href = '/error'
             })
     }
 }

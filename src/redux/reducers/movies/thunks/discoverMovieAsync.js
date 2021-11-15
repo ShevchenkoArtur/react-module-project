@@ -2,7 +2,7 @@ import {discoverMovie} from '../../../../api/routes/movies';
 import {getMovies} from '../actions/creators';
 import {toggleLoader, updatePagination} from '../../page/actions/creators';
 
-const discoverMovieAsync = (discoverQuery, page, history) => {
+const discoverMovieAsync = (discoverQuery, page) => {
     return (dispatch) => {
         dispatch(toggleLoader())
         discoverMovie(discoverQuery, page)
@@ -13,7 +13,7 @@ const discoverMovieAsync = (discoverQuery, page, history) => {
                 dispatch(toggleLoader())
             })
             .catch(error => {
-                history.push('/error')
+                window.location.href = '/error'
             })
     }
 }

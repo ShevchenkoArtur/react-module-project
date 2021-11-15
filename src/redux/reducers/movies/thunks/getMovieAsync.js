@@ -2,7 +2,7 @@ import {getMovie} from '../actions/creators';
 import {fetchMovie} from '../../../../api/routes/movies';
 import {toggleLoader} from '../../page/actions/creators';
 
-const getMovieAsync = (id, history) => {
+const getMovieAsync = (id) => {
     return (dispatch) => {
         dispatch(toggleLoader())
 
@@ -12,7 +12,7 @@ const getMovieAsync = (id, history) => {
                 dispatch(toggleLoader())
             })
             .catch(error => {
-                history.push('/error')
+                window.location.href = '/error'
             })
     }
 }

@@ -16,7 +16,7 @@ const HeaderAccountMenu = () => {
     const {userAccount} = useSelector(state => state.users)
 
     const onLogout = () => {
-        dispatch(deleteSessionAsync(localStorage.getItem('session_id'), history))
+        dispatch(deleteSessionAsync(localStorage.getItem('session_id')))
         history.push('/')
     }
 
