@@ -2,7 +2,7 @@ import {fetchMovies} from "../../../../api/routes/movies";
 import {getMovies} from "../actions/creators";
 import {toggleLoader, updatePagination} from '../../page/actions/creators';
 
-const getMoviesAsync = (page) => {
+const getMoviesAsync = (page, history) => {
     return (dispatch) => {
         dispatch(toggleLoader())
         fetchMovies(page)
@@ -12,7 +12,7 @@ const getMoviesAsync = (page) => {
                 dispatch(toggleLoader())
             })
             .catch(error => {
-                console.log(error)
+                history.push('/error')
             })
     }
 }

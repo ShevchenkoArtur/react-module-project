@@ -36,6 +36,7 @@ const moviesReducer = (state = initialState, action) => {
             }
         case moviesActions.UPDATE_MOVIE_FAVORITE:
             let favoriteMoviesArr = []
+
             if (action.payload.bool) {
                 favoriteMoviesArr = [...state.favoriteMovies, action.payload.movie]
             } else {
@@ -54,6 +55,11 @@ const moviesReducer = (state = initialState, action) => {
                     }
                     return el
                 })
+            }
+        case moviesActions.RESET_SELECTED_MOVIE:
+            return {
+                ...state,
+                selectedMovie: {}
             }
         default:
             return state

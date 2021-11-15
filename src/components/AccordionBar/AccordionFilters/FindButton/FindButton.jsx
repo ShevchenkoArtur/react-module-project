@@ -4,6 +4,7 @@ import {Button, Divider} from '@mui/material';
 import discoverMovieAsync from '../../../../redux/reducers/movies/thunks/discoverMovieAsync';
 import {useDispatch, useSelector} from 'react-redux';
 import formatDate from '../../../../utils/formatDate';
+import {useHistory} from 'react-router-dom';
 
 
 const FindButton = () => {
@@ -11,6 +12,7 @@ const FindButton = () => {
     const {searchLanguage, searchReleaseDates} = useSelector(state => state.sortAndFilters)
     const {genresId} = useSelector(state => state.genres)
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const find = () => {
         const startDate = formatDate(searchReleaseDates.startDate)
@@ -20,7 +22,7 @@ const FindButton = () => {
         const languageQuery = `with_original_language=${searchLanguage}`
 
         dispatch(
-            discoverMovieAsync(`${genresQuery}&${languageQuery}&${releaseDatesQuery}`, pagination.page)
+            discoverMovieAsync(`${genresQuery}&${languageQuery}&${releaseDatesQuery}`, pagination.page, history)
         )
     }
 

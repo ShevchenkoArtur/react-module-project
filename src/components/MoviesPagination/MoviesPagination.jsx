@@ -5,9 +5,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import formatDate from '../../utils/formatDate';
 import discoverMovieAsync from '../../redux/reducers/movies/thunks/discoverMovieAsync';
 import searchMovieAsync from '../../redux/reducers/movies/thunks/searchMovieAsync';
+import {useHistory} from 'react-router-dom';
 
 const MoviesPagination = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const paginationStyles = {
         position: 'absolute',
@@ -40,7 +42,7 @@ const MoviesPagination = () => {
 
     const onChangePage = (event, page) => {
         if (searchInputValue) {
-            dispatch(searchMovieAsync(searchInputValue, page))
+            dispatch(searchMovieAsync(searchInputValue, page, history))
         } else {
             findWithFilters(page)
         }

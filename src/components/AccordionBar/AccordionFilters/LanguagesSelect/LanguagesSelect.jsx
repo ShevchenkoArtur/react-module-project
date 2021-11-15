@@ -6,15 +6,17 @@ import {Divider, InputLabel, Select, Typography} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 import {updateSearchLanguage} from '../../../../redux/reducers/sortAndFilters/actions/creators';
+import {useHistory} from 'react-router-dom';
 
 const LanguagesSelect = () => {
     const {languages} = useSelector(state => state.languages)
     const {searchLanguage} = useSelector(state => state.sortAndFilters)
     const dispatch = useDispatch()
+    const history = useHistory()
 
     useEffect(() => {
         if (!languages.length) {
-            dispatch(getLanguagesAsync())
+            dispatch(getLanguagesAsync(history))
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

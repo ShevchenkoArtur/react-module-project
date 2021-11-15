@@ -9,9 +9,12 @@ import {login} from "../../../redux/reducers/users/actions/creators";
 import loginValidation from "../../../validationSchemes/loginValidation";
 import {generateToken} from '../../../api/routes/auth';
 import './form.css'
+import Loader from '../../UI/Loader/Loader';
+import {toggleLoader} from '../../../redux/reducers/page/actions/creators';
 
 const Login = () => {
     const {registeredUserData} = useSelector(state => state.users)
+    const {isLoading} = useSelector(state => state.page)
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -21,51 +24,63 @@ const Login = () => {
     })
 
     const onSubmit = (data) => {
+        dispatch(toggleLoader())
         dispatch(login())
-
         generateToken()
             .then(res => {
+                dispatch(toggleLoader)
                 const redirect = `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=${process.env.REACT_APP_REDIRECT_URL}`
                 window.location.replace(redirect)
+            })
+            .catch(error => {
+                history.push('/error')
             })
     }
 
     return (
-        <Box className='formContainer'>
-            <Paper elevation={3}>
-                <form noValidate className='formStyles' onSubmit={handleSubmit(onSubmit)}>
-                    <Typography align='center' fontWeight='bold'>Login</Typography>
-                    <Box>
-                        <TextField
-                            {...register('username')}
-                            error={!!errors.username}
-                            helperText={errors?.username?.message}
-                            type='text'
-                            label='Username'
-                            margin='normal'
-                            fullWidth
-                        />
+        <>
+            {
+                isLoading
+                    ?
+                    <Loader/>
+                    :
+                    <Box className='formContainer'>
+                        <Paper elevation={3}>
+                            <form noValidate className='formStyles' onSubmit={handleSubmit(onSubmit)}>
+                                <Typography align='center' fontWeight='bold'>Login</Typography>
+                                <Box>
+                                    <TextField
+                                        {...register('username')}
+                                        error={!!errors.username}
+                                        helperText={errors?.username?.message}
+                                        type='text'
+                                        label='Username'
+                                        margin='normal'
+                                        fullWidth
+                                    />
+                                </Box>
+                                <Box>
+                                    <TextField
+                                        {...register('password')}
+                                        error={!!errors.password}
+                                        helperText={errors?.password?.message}
+                                        type='password'
+                                        label='Password'
+                                        margin='normal'
+                                        fullWidth
+                                    />
+                                </Box>
+                                <Box mt={2}>
+                                    <Button fullWidth variant='contained' type='submit'>Submit</Button>
+                                </Box>
+                                <Box mt={2}>
+                                    <Button onClick={() => history.push('/signup')} fullWidth>Signup</Button>
+                                </Box>
+                            </form>
+                        </Paper>
                     </Box>
-                    <Box>
-                        <TextField
-                            {...register('password')}
-                            error={!!errors.password}
-                            helperText={errors?.password?.message}
-                            type='password'
-                            label='Password'
-                            margin='normal'
-                            fullWidth
-                        />
-                    </Box>
-                    <Box mt={2}>
-                        <Button fullWidth variant='contained' type='submit'>Submit</Button>
-                    </Box>
-                    <Box mt={2}>
-                        <Button onClick={() => history.push('/signup')} fullWidth>Signup</Button>
-                    </Box>
-                </form>
-            </Paper>
-        </Box>
+            }
+        </>
     )
 }
 

@@ -4,6 +4,7 @@ export const getMovies = (movies) => ({type: moviesActions.GET_MOVIES, payload: 
 export const getFavoriteMovies = (movies) => ({type: moviesActions.GET_FAVORITE_MOVIES, payload: {movies}})
 export const getMovie = (movie) => ({type: moviesActions.GET_MOVIE, payload: {movie}})
 export const searchFilm = (movies) => ({type: moviesActions.SEARCH_FILM, payload: {movies}})
+export const resetSelectedMovie = () => ({type: moviesActions.RESET_SELECTED_MOVIE})
 export const updateMovieAccountStates = (movieState) => ({
     type: moviesActions.UPDATE_MOVIE_ACCOUNT_STATES,
     payload: {movieState}

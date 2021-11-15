@@ -30,7 +30,7 @@ const Movie = ({movie}) => {
 
     useEffect(() => {
         // if (!moviesAccountStates.find(el => el.id === movie.id)?.id && sessionId) {
-            dispatch(getMovieAccountStateAsync(localStorage.getItem('session_id'), movie.id))
+        dispatch(getMovieAccountStateAsync(localStorage.getItem('session_id'), movie.id, history))
         // }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -42,7 +42,7 @@ const Movie = ({movie}) => {
             favorite: true
         }
 
-        dispatch(markAsFavoriteAsync(data, sessionId, userAccount.id, movie))
+        dispatch(markAsFavoriteAsync(data, sessionId, userAccount.id, movie, history))
         dispatch(setMessage('Added to your favourite list'))
         dispatch(setOpener(true))
     }
@@ -54,7 +54,7 @@ const Movie = ({movie}) => {
             favorite: false
         }
 
-        dispatch(markAsFavoriteAsync(data, sessionId, userAccount.id, movie))
+        dispatch(markAsFavoriteAsync(data, sessionId, userAccount.id, movie, history))
         dispatch(setMessage('Removed from your favourite list'))
         dispatch(setOpener(true))
     }
