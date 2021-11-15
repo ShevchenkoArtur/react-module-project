@@ -48,8 +48,11 @@ const MoviesPagination = () => {
 
     return (
         <Box style={paginationStyles}>
-            <PaginationSize count={pagination.totalPages} page={pagination.page}
-                            handleChange={onChangePage}/>
+            <PaginationSize
+                count={pagination.totalPages}
+                page={pagination.page}
+                handleChange={onChangePage}
+            />
         </Box>
     )
 }

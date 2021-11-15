@@ -1,26 +1,26 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import getFavoriteMoviesAsync from '../../../redux/reducers/movies/thunks/getFavoriteMoviesAsync';
-import MoviesPagination from '../../MoviesPagination/MoviesPagination';
 import {Container} from '@mui/material';
 import MoviesList from '../../MoviesList/MoviesList';
 import Box from '@mui/material/Box';
 import style from './FavoritesMovies.module.css'
 import SimpleSnackbar from '../../UI/SimpleSnackbar/SimpleSnackbar';
 import Loader from '../../UI/Loader/Loader';
+import FavoriteMoviesPagination from '../../FavoriteMoviesPagination/FavoriteMoviesPagination';
 
 const FavoriteMovies = () => {
     const dispatch = useDispatch()
-    const {isLoading} = useSelector(state => state.page)
+    const {isLoading, pagination} = useSelector(state => state.page)
     const {favoriteMovies} = useSelector(state => state.movies)
     const {userAccount, sessionId} = useSelector(state => state.users)
 
     useEffect(() => {
         // if (!favoriteMovies.length) {
         if (sessionId) {
-            dispatch(getFavoriteMoviesAsync(userAccount?.id, sessionId))
+            dispatch(getFavoriteMoviesAsync(userAccount?.id, sessionId, pagination.page))
         } else {
-            dispatch(getFavoriteMoviesAsync(userAccount?.id, localStorage.getItem('session_id')))
+            dispatch(getFavoriteMoviesAsync(userAccount?.id, localStorage.getItem('session_id'), pagination.page))
         }
         // }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,7 +40,7 @@ const FavoriteMovies = () => {
                     }
 
                 </Box>
-                <MoviesPagination/>
+                <FavoriteMoviesPagination/>
             </Box>
         </Container>
     )

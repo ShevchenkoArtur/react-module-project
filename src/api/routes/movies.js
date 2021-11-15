@@ -14,7 +14,7 @@ export async function fetchMovie(id) {
 }
 
 export async function fetchFavoriteMovies(accountId, session_id, page) {
-    return await apiInstance.get(`/account/${accountId}/favoasdrite/movies`, {
+    return await apiInstance.get(`/account/${accountId}/favorite/movies`, {
         params: {
             session_id,
             page
