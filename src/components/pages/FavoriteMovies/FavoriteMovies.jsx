@@ -11,15 +11,19 @@ import FavoriteMoviesPagination from '../../FavoriteMoviesPagination/FavoriteMov
 
 const FavoriteMovies = () => {
     const dispatch = useDispatch()
-    const {isLoading, pagination} = useSelector(state => state.page)
+    const {isLoading} = useSelector(state => state.page)
     const {favoriteMovies} = useSelector(state => state.movies)
     const {userAccount, sessionId} = useSelector(state => state.users)
 
     useEffect(() => {
         if (sessionId) {
-            dispatch(getFavoriteMoviesAsync(userAccount?.id, sessionId, pagination.page))
+            dispatch(
+                getFavoriteMoviesAsync(userAccount?.id, sessionId)
+            )
         } else {
-            dispatch(getFavoriteMoviesAsync(userAccount?.id, localStorage.getItem('session_id'), pagination.page))
+            dispatch(
+                getFavoriteMoviesAsync(JSON.parse(localStorage.getItem('user_account')), localStorage.getItem('session_id'))
+            )
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -36,7 +40,6 @@ const FavoriteMovies = () => {
                             :
                             <MoviesList moviesArr={favoriteMovies}/>
                     }
-
                 </Box>
                 <FavoriteMoviesPagination/>
             </Box>
