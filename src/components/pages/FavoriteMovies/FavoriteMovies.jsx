@@ -16,13 +16,11 @@ const FavoriteMovies = () => {
     const {userAccount, sessionId} = useSelector(state => state.users)
 
     useEffect(() => {
-        // if (!favoriteMovies.length) {
         if (sessionId) {
             dispatch(getFavoriteMoviesAsync(userAccount?.id, sessionId, pagination.page))
         } else {
             dispatch(getFavoriteMoviesAsync(userAccount?.id, localStorage.getItem('session_id'), pagination.page))
         }
-        // }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
